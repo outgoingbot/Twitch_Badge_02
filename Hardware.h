@@ -24,7 +24,6 @@ CRGB leds[NUMPIXELS];
 
 bool buffTemp[numCols][numRows]; //screen buffer-ish //screen buffer-ish (bool uses same amount of ram as byte)! this is inefficient this should be  byte[32]
 //maps library to hardware// depends on board
-//byte X1[16] = {0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7};
 byte X1[16] = {7,6,5,4,3,2,1,0,7,6,5,4,3,2,1,0};
 byte Y2[16] = {0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7};
 byte Y3[16] = {0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7};
@@ -38,20 +37,15 @@ const int LEDMATRIX_WIDTH    = LEDMATRIX_SEGMENTS * 8;
 LEDMatrixDriver lmd(LEDMATRIX_SEGMENTS, LEDMATRIX_CS_PIN);
 
 
-
-
 void setupHardware(){
 	pinMode(LED_BUILTIN, OUTPUT);
 	pinMode(BTN1_PIN,INPUT);
 	pinMode(BTN2_PIN,INPUT);
-
 	
 	FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUMPIXELS).setCorrection(TypicalLEDStrip);
 	FastLED.setBrightness(BRIGHTNESS);
 	FastLED.clear(true);
-  	
-	
+  		
 	lmd.setEnabled(true);
-	lmd.setIntensity(2);   // 0 = low, 10 = high
-	
+	lmd.setIntensity(2);   // 0 = low, 10 = high	
 }

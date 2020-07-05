@@ -16,10 +16,10 @@ class secret
 
 
 // Initialize network parameters
-String ssid="";
-String password="";
+String ssid="BeanTown";
+String password="Carlton33Puff$bank$";
 // Parameters for Twitch channel
-String twitch_oauth_token= "oauth:";
+String twitch_oauth_token= "oauth:j96jghcfjngk8yokz7krz4nbryhm9d";
 String twitch_nick="esp8266led";
 String twitch_channel="#esp8266led";
 

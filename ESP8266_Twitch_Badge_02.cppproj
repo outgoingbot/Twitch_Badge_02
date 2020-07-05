@@ -68,10 +68,10 @@
       <Value>TCP_MSS=536</Value>
       <Value>LWIP_FEATURES=1</Value>
       <Value>LWIP_IPV6=0</Value>
-      <Value>ARDUINO_ESP8266_GENERIC</Value>
+      <Value>ARDUINO_ESP8266_NODEMCU</Value>
       <Value>ARDUINO_ARCH_ESP8266</Value>
       <Value>LED_BUILTIN=2</Value>
-      <Value>FLASHMODE_DOUT</Value>
+      <Value>FLASHMODE_DIO</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.directories.IncludePaths>
@@ -90,7 +90,7 @@
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc</Value>
-      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic</Value>
+      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/nodemcu</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include</Value>
@@ -125,10 +125,10 @@
       <Value>TCP_MSS=536</Value>
       <Value>LWIP_FEATURES=1</Value>
       <Value>LWIP_IPV6=0</Value>
-      <Value>ARDUINO_ESP8266_GENERIC</Value>
+      <Value>ARDUINO_ESP8266_NODEMCU</Value>
       <Value>ARDUINO_ARCH_ESP8266</Value>
       <Value>LED_BUILTIN=2</Value>
-      <Value>FLASHMODE_DOUT</Value>
+      <Value>FLASHMODE_DIO</Value>
     </ListValues>
   </avrgcccpp.compiler.symbols.DefSymbols>
   <avrgcccpp.compiler.directories.IncludePaths>
@@ -147,7 +147,7 @@
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc</Value>
-      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic</Value>
+      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/nodemcu</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include</Value>
@@ -166,13 +166,14 @@
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>../../../ESP8266_Twitch_Badge_02;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Program Files (x86)/Arduino/hardware/tools/avr//lib/gcc/avr/7.3.0/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include-fixed;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;{vm.intellisense.add-paths};C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/avr;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/Temp/VMBuilds/ESP8266_Twitch_Badge_02/nano_atmega328/Release/core;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/lib/gcc/xtensa-lx106-elf/4.8.2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WiFi/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WebServer/src;C:/Users/Tower/Documents/Arduino/libraries/WebSockets/src;C:/Users/Tower/Documents/Arduino/libraries/ArduinoJson/src;C:/Users/Tower/Documents/Arduino/libraries/FastLED;C:/Users/Tower/Documents/Arduino/libraries/LEDMatrixDriver/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/SPI;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/Hash/src;{build.path}/core;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>../../../ESP8266_Twitch_Badge_02;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Program Files (x86)/Arduino/hardware/tools/avr//lib/gcc/avr/7.3.0/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include-fixed;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;{vm.intellisense.add-paths};C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/avr;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/Temp/VMBuilds/ESP8266_Twitch_Badge_02/nano_atmega328/Release/core;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/lib/gcc/xtensa-lx106-elf/4.8.2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WiFi/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WebServer/src;C:/Users/Tower/Documents/Arduino/libraries/WebSockets/src;C:/Users/Tower/Documents/Arduino/libraries/ArduinoJson/src;C:/Users/Tower/Documents/Arduino/libraries/FastLED;C:/Users/Tower/Documents/Arduino/libraries/LEDMatrixDriver/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/SPI;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/Hash/src;{build.path}/core;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/nodemcu;C:/Users/Tower/AppData/Local/Temp/VMBuilds/ESP8266_Twitch_Badge_02/esp8266_generic/Release/core;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.board.name>esp8266_generic</arduino.board.name>
-        <arduino.board.desc>Generic ESP8266 Module</arduino.board.desc>
-        <arduino.board.property_bag>name=Generic ESP8266 Module
-build.board=ESP8266_GENERIC
+        <arduino.board.name>esp8266_nodemcuv2</arduino.board.name>
+        <arduino.board.desc>NodeMCU 1.0 (ESP-12E Module)</arduino.board.desc>
+        <arduino.board.property_bag>name=NodeMCU 1.0 (ESP-12E Module)
+build.board=ESP8266_NODEMCU
+build.variant=nodemcu
 upload.tool=esptool
 upload.maximum_data_size=81920
 upload.wait_for_upload_port=true
@@ -181,7 +182,6 @@ serial.disableDTR=true
 serial.disableRTS=true
 build.mcu=esp8266
 build.core=esp8266
-build.variant=generic
 build.spiffs_pagesize=256
 build.debug_port=
 build.debug_level=
@@ -208,169 +208,10 @@ menu.ssl.all=All SSL ciphers (most compatible)
 menu.ssl.all.build.sslflags=
 menu.ssl.basic=Basic SSL ciphers (lower ROM use)
 menu.ssl.basic.build.sslflags=-DBEARSSL_SSL_BASIC
-menu.ResetMethod.nodemcu=dtr (aka nodemcu)
-menu.ResetMethod.nodemcu.upload.resetmethod=--before default_reset --after hard_reset
-menu.ResetMethod.ck=no dtr (aka ck)
-menu.ResetMethod.ck.upload.resetmethod=--before no_reset --after soft_reset
-menu.ResetMethod.nodtr_nosync=no dtr, no_sync
-menu.ResetMethod.nodtr_nosync.upload.resetmethod=--before no_reset_no_sync --after soft_reset
-menu.CrystalFreq.26=26 MHz
-menu.CrystalFreq.40=40 MHz
-menu.CrystalFreq.40.build.extra_flags=-DF_CRYSTAL=40000000 -DESP8266
-menu.FlashFreq.40=40MHz
-menu.FlashFreq.40.build.flash_freq=40
-menu.FlashFreq.80=80MHz
-menu.FlashFreq.80.build.flash_freq=80
-menu.FlashFreq.20=20MHz
-menu.FlashFreq.20.build.flash_freq=20
-menu.FlashFreq.26=26MHz
-menu.FlashFreq.26.build.flash_freq=26
-menu.FlashMode.dout=DOUT (compatible)
-menu.FlashMode.dout.build.flash_mode=dout
-menu.FlashMode.dout.build.flash_flags=-DFLASHMODE_DOUT
-menu.FlashMode.dio=DIO
-menu.FlashMode.dio.build.flash_mode=dio
-menu.FlashMode.dio.build.flash_flags=-DFLASHMODE_DIO
-menu.FlashMode.qout=QOUT
-menu.FlashMode.qout.build.flash_mode=qout
-menu.FlashMode.qout.build.flash_flags=-DFLASHMODE_QOUT
-menu.FlashMode.qio=QIO (fast)
-menu.FlashMode.qio.build.flash_mode=qio
-menu.FlashMode.qio.build.flash_flags=-DFLASHMODE_QIO
-menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
-menu.eesz.1M64.build.flash_size=1M
-menu.eesz.1M64.build.flash_size_bytes=0x100000
-menu.eesz.1M64.build.flash_ld=eagle.flash.1m64.ld
-menu.eesz.1M64.build.spiffs_pagesize=256
-menu.eesz.1M64.upload.maximum_size=958448
-menu.eesz.1M64.build.rfcal_addr=0xFC000
-menu.eesz.1M64.build.spiffs_start=0xEB000
-menu.eesz.1M64.build.spiffs_end=0xFB000
-menu.eesz.1M64.build.spiffs_blocksize=4096
-menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
-menu.eesz.1M128.build.flash_size=1M
-menu.eesz.1M128.build.flash_size_bytes=0x100000
-menu.eesz.1M128.build.flash_ld=eagle.flash.1m128.ld
-menu.eesz.1M128.build.spiffs_pagesize=256
-menu.eesz.1M128.upload.maximum_size=892912
-menu.eesz.1M128.build.rfcal_addr=0xFC000
-menu.eesz.1M128.build.spiffs_start=0xDB000
-menu.eesz.1M128.build.spiffs_end=0xFB000
-menu.eesz.1M128.build.spiffs_blocksize=4096
-menu.eesz.1M144=1MB (FS:144KB OTA:~430KB)
-menu.eesz.1M144.build.flash_size=1M
-menu.eesz.1M144.build.flash_size_bytes=0x100000
-menu.eesz.1M144.build.flash_ld=eagle.flash.1m144.ld
-menu.eesz.1M144.build.spiffs_pagesize=256
-menu.eesz.1M144.upload.maximum_size=876528
-menu.eesz.1M144.build.rfcal_addr=0xFC000
-menu.eesz.1M144.build.spiffs_start=0xD7000
-menu.eesz.1M144.build.spiffs_end=0xFB000
-menu.eesz.1M144.build.spiffs_blocksize=4096
-menu.eesz.1M160=1MB (FS:160KB OTA:~422KB)
-menu.eesz.1M160.build.flash_size=1M
-menu.eesz.1M160.build.flash_size_bytes=0x100000
-menu.eesz.1M160.build.flash_ld=eagle.flash.1m160.ld
-menu.eesz.1M160.build.spiffs_pagesize=256
-menu.eesz.1M160.upload.maximum_size=860144
-menu.eesz.1M160.build.rfcal_addr=0xFC000
-menu.eesz.1M160.build.spiffs_start=0xD3000
-menu.eesz.1M160.build.spiffs_end=0xFB000
-menu.eesz.1M160.build.spiffs_blocksize=4096
-menu.eesz.1M192=1MB (FS:192KB OTA:~406KB)
-menu.eesz.1M192.build.flash_size=1M
-menu.eesz.1M192.build.flash_size_bytes=0x100000
-menu.eesz.1M192.build.flash_ld=eagle.flash.1m192.ld
-menu.eesz.1M192.build.spiffs_pagesize=256
-menu.eesz.1M192.upload.maximum_size=827376
-menu.eesz.1M192.build.rfcal_addr=0xFC000
-menu.eesz.1M192.build.spiffs_start=0xCB000
-menu.eesz.1M192.build.spiffs_end=0xFB000
-menu.eesz.1M192.build.spiffs_blocksize=4096
-menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
-menu.eesz.1M256.build.flash_size=1M
-menu.eesz.1M256.build.flash_size_bytes=0x100000
-menu.eesz.1M256.build.flash_ld=eagle.flash.1m256.ld
-menu.eesz.1M256.build.spiffs_pagesize=256
-menu.eesz.1M256.upload.maximum_size=761840
-menu.eesz.1M256.build.rfcal_addr=0xFC000
-menu.eesz.1M256.build.spiffs_start=0xBB000
-menu.eesz.1M256.build.spiffs_end=0xFB000
-menu.eesz.1M256.build.spiffs_blocksize=4096
-menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
-menu.eesz.1M512.build.flash_size=1M
-menu.eesz.1M512.build.flash_size_bytes=0x100000
-menu.eesz.1M512.build.flash_ld=eagle.flash.1m512.ld
-menu.eesz.1M512.build.spiffs_pagesize=256
-menu.eesz.1M512.upload.maximum_size=499696
-menu.eesz.1M512.build.rfcal_addr=0xFC000
-menu.eesz.1M512.build.spiffs_start=0x7B000
-menu.eesz.1M512.build.spiffs_end=0xFB000
-menu.eesz.1M512.build.spiffs_blocksize=8192
-menu.eesz.1M=1MB (FS:none OTA:~502KB)
-menu.eesz.1M.build.flash_size=1M
-menu.eesz.1M.build.flash_size_bytes=0x100000
-menu.eesz.1M.build.flash_ld=eagle.flash.1m.ld
-menu.eesz.1M.build.spiffs_pagesize=256
-menu.eesz.1M.upload.maximum_size=1023984
-menu.eesz.1M.build.rfcal_addr=0xFC000
-menu.eesz.2M64=2MB (FS:64KB OTA:~992KB)
-menu.eesz.2M64.build.flash_size=2M
-menu.eesz.2M64.build.flash_size_bytes=0x200000
-menu.eesz.2M64.build.flash_ld=eagle.flash.2m64.ld
-menu.eesz.2M64.build.spiffs_pagesize=256
-menu.eesz.2M64.upload.maximum_size=1044464
-menu.eesz.2M64.build.rfcal_addr=0x1FC000
-menu.eesz.2M64.build.spiffs_start=0x1F0000
-menu.eesz.2M64.build.spiffs_end=0x1FB000
-menu.eesz.2M64.build.spiffs_blocksize=4096
-menu.eesz.2M128=2MB (FS:128KB OTA:~960KB)
-menu.eesz.2M128.build.flash_size=2M
-menu.eesz.2M128.build.flash_size_bytes=0x200000
-menu.eesz.2M128.build.flash_ld=eagle.flash.2m128.ld
-menu.eesz.2M128.build.spiffs_pagesize=256
-menu.eesz.2M128.upload.maximum_size=1044464
-menu.eesz.2M128.build.rfcal_addr=0x1FC000
-menu.eesz.2M128.build.spiffs_start=0x1E0000
-menu.eesz.2M128.build.spiffs_end=0x1FB000
-menu.eesz.2M128.build.spiffs_blocksize=4096
-menu.eesz.2M256=2MB (FS:256KB OTA:~896KB)
-menu.eesz.2M256.build.flash_size=2M
-menu.eesz.2M256.build.flash_size_bytes=0x200000
-menu.eesz.2M256.build.flash_ld=eagle.flash.2m256.ld
-menu.eesz.2M256.build.spiffs_pagesize=256
-menu.eesz.2M256.upload.maximum_size=1044464
-menu.eesz.2M256.build.rfcal_addr=0x1FC000
-menu.eesz.2M256.build.spiffs_start=0x1C0000
-menu.eesz.2M256.build.spiffs_end=0x1FB000
-menu.eesz.2M256.build.spiffs_blocksize=4096
-menu.eesz.2M512=2MB (FS:512KB OTA:~768KB)
-menu.eesz.2M512.build.flash_size=2M
-menu.eesz.2M512.build.flash_size_bytes=0x200000
-menu.eesz.2M512.build.flash_ld=eagle.flash.2m512.ld
-menu.eesz.2M512.build.spiffs_pagesize=256
-menu.eesz.2M512.upload.maximum_size=1044464
-menu.eesz.2M512.build.rfcal_addr=0x1FC000
-menu.eesz.2M512.build.spiffs_start=0x180000
-menu.eesz.2M512.build.spiffs_end=0x1FA000
-menu.eesz.2M512.build.spiffs_blocksize=8192
-menu.eesz.2M1M=2MB (FS:1MB OTA:~512KB)
-menu.eesz.2M1M.build.flash_size=2M
-menu.eesz.2M1M.build.flash_size_bytes=0x200000
-menu.eesz.2M1M.build.flash_ld=eagle.flash.2m1m.ld
-menu.eesz.2M1M.build.spiffs_pagesize=256
-menu.eesz.2M1M.upload.maximum_size=1044464
-menu.eesz.2M1M.build.rfcal_addr=0x1FC000
-menu.eesz.2M1M.build.spiffs_start=0x100000
-menu.eesz.2M1M.build.spiffs_end=0x1FA000
-menu.eesz.2M1M.build.spiffs_blocksize=8192
-menu.eesz.2M=2MB (FS:none OTA:~1019KB)
-menu.eesz.2M.build.flash_size=2M
-menu.eesz.2M.build.flash_size_bytes=0x200000
-menu.eesz.2M.build.flash_ld=eagle.flash.2m.ld
-menu.eesz.2M.build.spiffs_pagesize=256
-menu.eesz.2M.upload.maximum_size=1044464
-menu.eesz.2M.build.rfcal_addr=0x1FC000
+upload.resetmethod=--before default_reset --after hard_reset
+build.flash_mode=dio
+build.flash_flags=-DFLASHMODE_DIO
+build.flash_freq=40
 menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
 menu.eesz.4M2M.build.flash_size=4M
 menu.eesz.4M2M.build.flash_size_bytes=0x400000
@@ -408,129 +249,10 @@ menu.eesz.4M.build.flash_ld=eagle.flash.4m.ld
 menu.eesz.4M.build.spiffs_pagesize=256
 menu.eesz.4M.upload.maximum_size=1044464
 menu.eesz.4M.build.rfcal_addr=0x3FC000
-menu.eesz.8M6M=8MB (FS:6MB OTA:~1019KB)
-menu.eesz.8M6M.build.flash_size=8M
-menu.eesz.8M6M.build.flash_size_bytes=0x800000
-menu.eesz.8M6M.build.flash_ld=eagle.flash.8m6m.ld
-menu.eesz.8M6M.build.spiffs_pagesize=256
-menu.eesz.8M6M.upload.maximum_size=1044464
-menu.eesz.8M6M.build.rfcal_addr=0x7FC000
-menu.eesz.8M6M.build.spiffs_start=0x200000
-menu.eesz.8M6M.build.spiffs_end=0x7FA000
-menu.eesz.8M6M.build.spiffs_blocksize=8192
-menu.eesz.8M7M=8MB (FS:7MB OTA:~512KB)
-menu.eesz.8M7M.build.flash_size=8M
-menu.eesz.8M7M.build.flash_size_bytes=0x800000
-menu.eesz.8M7M.build.flash_ld=eagle.flash.8m7m.ld
-menu.eesz.8M7M.build.spiffs_pagesize=256
-menu.eesz.8M7M.upload.maximum_size=1044464
-menu.eesz.8M7M.build.rfcal_addr=0x7FC000
-menu.eesz.8M7M.build.spiffs_start=0x100000
-menu.eesz.8M7M.build.spiffs_end=0x7FA000
-menu.eesz.8M7M.build.spiffs_blocksize=8192
-menu.eesz.16M14M=16MB (FS:14MB OTA:~1019KB)
-menu.eesz.16M14M.build.flash_size=16M
-menu.eesz.16M14M.build.flash_size_bytes=0x1000000
-menu.eesz.16M14M.build.flash_ld=eagle.flash.16m14m.ld
-menu.eesz.16M14M.build.spiffs_pagesize=256
-menu.eesz.16M14M.upload.maximum_size=1044464
-menu.eesz.16M14M.build.rfcal_addr=0xFFC000
-menu.eesz.16M14M.build.spiffs_start=0x200000
-menu.eesz.16M14M.build.spiffs_end=0xFFA000
-menu.eesz.16M14M.build.spiffs_blocksize=8192
-menu.eesz.16M15M=16MB (FS:15MB OTA:~512KB)
-menu.eesz.16M15M.build.flash_size=16M
-menu.eesz.16M15M.build.flash_size_bytes=0x1000000
-menu.eesz.16M15M.build.flash_ld=eagle.flash.16m15m.ld
-menu.eesz.16M15M.build.spiffs_pagesize=256
-menu.eesz.16M15M.upload.maximum_size=1044464
-menu.eesz.16M15M.build.rfcal_addr=0xFFC000
-menu.eesz.16M15M.build.spiffs_start=0x100000
-menu.eesz.16M15M.build.spiffs_end=0xFFA000
-menu.eesz.16M15M.build.spiffs_blocksize=8192
-menu.eesz.512K32=512KB (FS:32KB OTA:~230KB)
-menu.eesz.512K32.build.flash_size=512K
-menu.eesz.512K32.build.flash_size_bytes=0x80000
-menu.eesz.512K32.build.flash_ld=eagle.flash.512k32.ld
-menu.eesz.512K32.build.spiffs_pagesize=256
-menu.eesz.512K32.upload.maximum_size=466928
-menu.eesz.512K32.build.rfcal_addr=0x7C000
-menu.eesz.512K32.build.spiffs_start=0x73000
-menu.eesz.512K32.build.spiffs_end=0x7B000
-menu.eesz.512K32.build.spiffs_blocksize=4096
-menu.eesz.512K64=512KB (FS:64KB OTA:~214KB)
-menu.eesz.512K64.build.flash_size=512K
-menu.eesz.512K64.build.flash_size_bytes=0x80000
-menu.eesz.512K64.build.flash_ld=eagle.flash.512k64.ld
-menu.eesz.512K64.build.spiffs_pagesize=256
-menu.eesz.512K64.upload.maximum_size=434160
-menu.eesz.512K64.build.rfcal_addr=0x7C000
-menu.eesz.512K64.build.spiffs_start=0x6B000
-menu.eesz.512K64.build.spiffs_end=0x7B000
-menu.eesz.512K64.build.spiffs_blocksize=4096
-menu.eesz.512K128=512KB (FS:128KB OTA:~182KB)
-menu.eesz.512K128.build.flash_size=512K
-menu.eesz.512K128.build.flash_size_bytes=0x80000
-menu.eesz.512K128.build.flash_ld=eagle.flash.512k128.ld
-menu.eesz.512K128.build.spiffs_pagesize=256
-menu.eesz.512K128.upload.maximum_size=368624
-menu.eesz.512K128.build.rfcal_addr=0x7C000
-menu.eesz.512K128.build.spiffs_start=0x5B000
-menu.eesz.512K128.build.spiffs_end=0x7B000
-menu.eesz.512K128.build.spiffs_blocksize=4096
-menu.eesz.512K=512KB (FS:none OTA:~246KB)
-menu.eesz.512K.build.flash_size=512K
-menu.eesz.512K.build.flash_size_bytes=0x80000
-menu.eesz.512K.build.flash_ld=eagle.flash.512k.ld
-menu.eesz.512K.build.spiffs_pagesize=256
-menu.eesz.512K.upload.maximum_size=499696
-menu.eesz.512K.build.rfcal_addr=0x7C000
 menu.led.2=2
 menu.led.2.build.led=-DLED_BUILTIN=2
-menu.led.0=0
-menu.led.0.build.led=-DLED_BUILTIN=0
-menu.led.1=1
-menu.led.1.build.led=-DLED_BUILTIN=1
-menu.led.3=3
-menu.led.3.build.led=-DLED_BUILTIN=3
-menu.led.4=4
-menu.led.4.build.led=-DLED_BUILTIN=4
-menu.led.5=5
-menu.led.5.build.led=-DLED_BUILTIN=5
-menu.led.6=6
-menu.led.6.build.led=-DLED_BUILTIN=6
-menu.led.7=7
-menu.led.7.build.led=-DLED_BUILTIN=7
-menu.led.8=8
-menu.led.8.build.led=-DLED_BUILTIN=8
-menu.led.9=9
-menu.led.9.build.led=-DLED_BUILTIN=9
-menu.led.10=10
-menu.led.10.build.led=-DLED_BUILTIN=10
-menu.led.11=11
-menu.led.11.build.led=-DLED_BUILTIN=11
-menu.led.12=12
-menu.led.12.build.led=-DLED_BUILTIN=12
-menu.led.13=13
-menu.led.13.build.led=-DLED_BUILTIN=13
-menu.led.14=14
-menu.led.14.build.led=-DLED_BUILTIN=14
-menu.led.15=15
-menu.led.15.build.led=-DLED_BUILTIN=15
 menu.led.16=16
 menu.led.16.build.led=-DLED_BUILTIN=16
-menu.sdk.nonosdk_190703=nonos-sdk 2.2.1+100 (190703)
-menu.sdk.nonosdk_190703.build.sdk=NONOSDK22x_190703
-menu.sdk.nonosdk_191122=nonos-sdk 2.2.1+119 (191122)
-menu.sdk.nonosdk_191122.build.sdk=NONOSDK22x_191122
-menu.sdk.nonosdk_191105=nonos-sdk 2.2.1+113 (191105)
-menu.sdk.nonosdk_191105.build.sdk=NONOSDK22x_191105
-menu.sdk.nonosdk_191024=nonos-sdk 2.2.1+111 (191024)
-menu.sdk.nonosdk_191024.build.sdk=NONOSDK22x_191024
-menu.sdk.nonosdk221=nonos-sdk 2.2.1 (legacy)
-menu.sdk.nonosdk221.build.sdk=NONOSDK221
-menu.sdk.nonosdk3v0=nonos-sdk pre-3 (180626 known issues)
-menu.sdk.nonosdk3v0.build.sdk=NONOSDK3V0
 menu.ip.lm2f=v2 Lower Memory
 menu.ip.lm2f.build.lwip_include=lwip2/include
 menu.ip.lm2f.build.lwip_lib=-llwip2-536-feat
@@ -653,7 +375,7 @@ runtime.ide.version=108012
 target_package=esp8266
 target_platform=esp8266
 runtime.hardware.path=C:\Users\Tower\AppData\Local\arduino15\packages\esp8266\hardware\esp8266
-originalid=generic
+originalid=nodemcuv2
 intellisense.tools.path={compiler.toolchain.path}
 intellisense.include.paths={runtime.tools.xtensa-lx106-elf-gcc.path}\xtensa-lx106-elf\include\c++\4.8.2;{runtime.tools.xtensa-lx106-elf-gcc.path}\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;{runtime.tools.xtensa-lx106-elf-gcc.path}\xtensa-lx106-elf\include;{runtime.tools.xtensa-lx106-elf-gcc.path}\lib\gcc\xtensa-lx106-elf\4.8.2\include;{runtime.platform.path}\tools\sdk\include;{vm.intellisense.add-paths}
 tools.wwwfiles.name=ESP8266 Sketch Data Upload
@@ -788,9 +510,9 @@ runtime.tools.micronucleus-2.0a4.path=C:\Users\Tower\AppData\Local\arduino15\pac
 runtime.tools.stm32tools.path=C:\Users\Tower\AppData\Local\arduino15\packages\stm32duino\tools\stm32tools\2018.7.2
 runtime.tools.stm32tools-2018.7.2.path=C:\Users\Tower\AppData\Local\arduino15\packages\stm32duino\tools\stm32tools\2018.7.2
 runtime.tools.tools-avr.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
-runtime.vm.boardinfo.id=esp8266_generic
-runtime.vm.boardinfo.name=esp8266_generic
-runtime.vm.boardinfo.desc=Generic ESP8266 Module
+runtime.vm.boardinfo.id=esp8266_nodemcuv2
+runtime.vm.boardinfo.name=esp8266_nodemcuv2
+runtime.vm.boardinfo.desc=NodeMCU 1.0 (ESP-12E Module)
 runtime.vm.boardinfo.src_location=C:\Users\Tower\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.1
 ide.hint=Use installed IDE. Provides built-in hardware, reference/help and libraries.
 ide.location.key=Arduino16x
@@ -1041,10 +763,10 @@ build.arch=ESP8266
       <Value>TCP_MSS=536</Value>
       <Value>LWIP_FEATURES=1</Value>
       <Value>LWIP_IPV6=0</Value>
-      <Value>ARDUINO_ESP8266_GENERIC</Value>
+      <Value>ARDUINO_ESP8266_NODEMCU</Value>
       <Value>ARDUINO_ARCH_ESP8266</Value>
       <Value>LED_BUILTIN=2</Value>
-      <Value>FLASHMODE_DOUT</Value>
+      <Value>FLASHMODE_DIO</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.directories.IncludePaths>
@@ -1063,7 +785,7 @@ build.arch=ESP8266
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc</Value>
-      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic</Value>
+      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/nodemcu</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include</Value>
@@ -1098,10 +820,10 @@ build.arch=ESP8266
       <Value>TCP_MSS=536</Value>
       <Value>LWIP_FEATURES=1</Value>
       <Value>LWIP_IPV6=0</Value>
-      <Value>ARDUINO_ESP8266_GENERIC</Value>
+      <Value>ARDUINO_ESP8266_NODEMCU</Value>
       <Value>ARDUINO_ARCH_ESP8266</Value>
       <Value>LED_BUILTIN=2</Value>
-      <Value>FLASHMODE_DOUT</Value>
+      <Value>FLASHMODE_DIO</Value>
     </ListValues>
   </avrgcccpp.compiler.symbols.DefSymbols>
   <avrgcccpp.compiler.directories.IncludePaths>
@@ -1120,7 +842,7 @@ build.arch=ESP8266
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc</Value>
-      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic</Value>
+      <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/nodemcu</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include</Value>
@@ -1139,13 +861,14 @@ build.arch=ESP8266
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>../../../ESP8266_Twitch_Badge_02;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Program Files (x86)/Arduino/hardware/tools/avr//lib/gcc/avr/7.3.0/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include-fixed;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;{vm.intellisense.add-paths};C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/avr;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/Temp/VMBuilds/ESP8266_Twitch_Badge_02/nano_atmega328/Release/core;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/lib/gcc/xtensa-lx106-elf/4.8.2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WiFi/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WebServer/src;C:/Users/Tower/Documents/Arduino/libraries/WebSockets/src;C:/Users/Tower/Documents/Arduino/libraries/ArduinoJson/src;C:/Users/Tower/Documents/Arduino/libraries/FastLED;C:/Users/Tower/Documents/Arduino/libraries/LEDMatrixDriver/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/SPI;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/Hash/src;{build.path}/core;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>../../../ESP8266_Twitch_Badge_02;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;C:/Program Files (x86)/Arduino/hardware/tools/avr//lib/gcc/avr/7.3.0/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include-fixed;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;{vm.intellisense.add-paths};C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/avr;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/libb64;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/spiffs;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/cores/esp8266/umm_malloc;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/generic;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/libc/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/Temp/VMBuilds/ESP8266_Twitch_Badge_02/nano_atmega328/Release/core;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/lib/gcc/xtensa-lx106-elf/4.8.2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/tools/sdk/lwip2/include;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WiFi/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WebServer/src;C:/Users/Tower/Documents/Arduino/libraries/WebSockets/src;C:/Users/Tower/Documents/Arduino/libraries/ArduinoJson/src;C:/Users/Tower/Documents/Arduino/libraries/FastLED;C:/Users/Tower/Documents/Arduino/libraries/LEDMatrixDriver/src;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/SPI;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/Hash/src;{build.path}/core;C:/Users/Tower/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.1/variants/nodemcu;C:/Users/Tower/AppData/Local/Temp/VMBuilds/ESP8266_Twitch_Badge_02/esp8266_generic/Release/core;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.board.name>esp8266_generic</arduino.board.name>
-        <arduino.board.desc>Generic ESP8266 Module</arduino.board.desc>
-        <arduino.board.property_bag>name=Generic ESP8266 Module
-build.board=ESP8266_GENERIC
+        <arduino.board.name>esp8266_nodemcuv2</arduino.board.name>
+        <arduino.board.desc>NodeMCU 1.0 (ESP-12E Module)</arduino.board.desc>
+        <arduino.board.property_bag>name=NodeMCU 1.0 (ESP-12E Module)
+build.board=ESP8266_NODEMCU
+build.variant=nodemcu
 upload.tool=esptool
 upload.maximum_data_size=81920
 upload.wait_for_upload_port=true
@@ -1154,7 +877,6 @@ serial.disableDTR=true
 serial.disableRTS=true
 build.mcu=esp8266
 build.core=esp8266
-build.variant=generic
 build.spiffs_pagesize=256
 build.debug_port=
 build.debug_level=
@@ -1181,169 +903,10 @@ menu.ssl.all=All SSL ciphers (most compatible)
 menu.ssl.all.build.sslflags=
 menu.ssl.basic=Basic SSL ciphers (lower ROM use)
 menu.ssl.basic.build.sslflags=-DBEARSSL_SSL_BASIC
-menu.ResetMethod.nodemcu=dtr (aka nodemcu)
-menu.ResetMethod.nodemcu.upload.resetmethod=--before default_reset --after hard_reset
-menu.ResetMethod.ck=no dtr (aka ck)
-menu.ResetMethod.ck.upload.resetmethod=--before no_reset --after soft_reset
-menu.ResetMethod.nodtr_nosync=no dtr, no_sync
-menu.ResetMethod.nodtr_nosync.upload.resetmethod=--before no_reset_no_sync --after soft_reset
-menu.CrystalFreq.26=26 MHz
-menu.CrystalFreq.40=40 MHz
-menu.CrystalFreq.40.build.extra_flags=-DF_CRYSTAL=40000000 -DESP8266
-menu.FlashFreq.40=40MHz
-menu.FlashFreq.40.build.flash_freq=40
-menu.FlashFreq.80=80MHz
-menu.FlashFreq.80.build.flash_freq=80
-menu.FlashFreq.20=20MHz
-menu.FlashFreq.20.build.flash_freq=20
-menu.FlashFreq.26=26MHz
-menu.FlashFreq.26.build.flash_freq=26
-menu.FlashMode.dout=DOUT (compatible)
-menu.FlashMode.dout.build.flash_mode=dout
-menu.FlashMode.dout.build.flash_flags=-DFLASHMODE_DOUT
-menu.FlashMode.dio=DIO
-menu.FlashMode.dio.build.flash_mode=dio
-menu.FlashMode.dio.build.flash_flags=-DFLASHMODE_DIO
-menu.FlashMode.qout=QOUT
-menu.FlashMode.qout.build.flash_mode=qout
-menu.FlashMode.qout.build.flash_flags=-DFLASHMODE_QOUT
-menu.FlashMode.qio=QIO (fast)
-menu.FlashMode.qio.build.flash_mode=qio
-menu.FlashMode.qio.build.flash_flags=-DFLASHMODE_QIO
-menu.eesz.1M64=1MB (FS:64KB OTA:~470KB)
-menu.eesz.1M64.build.flash_size=1M
-menu.eesz.1M64.build.flash_size_bytes=0x100000
-menu.eesz.1M64.build.flash_ld=eagle.flash.1m64.ld
-menu.eesz.1M64.build.spiffs_pagesize=256
-menu.eesz.1M64.upload.maximum_size=958448
-menu.eesz.1M64.build.rfcal_addr=0xFC000
-menu.eesz.1M64.build.spiffs_start=0xEB000
-menu.eesz.1M64.build.spiffs_end=0xFB000
-menu.eesz.1M64.build.spiffs_blocksize=4096
-menu.eesz.1M128=1MB (FS:128KB OTA:~438KB)
-menu.eesz.1M128.build.flash_size=1M
-menu.eesz.1M128.build.flash_size_bytes=0x100000
-menu.eesz.1M128.build.flash_ld=eagle.flash.1m128.ld
-menu.eesz.1M128.build.spiffs_pagesize=256
-menu.eesz.1M128.upload.maximum_size=892912
-menu.eesz.1M128.build.rfcal_addr=0xFC000
-menu.eesz.1M128.build.spiffs_start=0xDB000
-menu.eesz.1M128.build.spiffs_end=0xFB000
-menu.eesz.1M128.build.spiffs_blocksize=4096
-menu.eesz.1M144=1MB (FS:144KB OTA:~430KB)
-menu.eesz.1M144.build.flash_size=1M
-menu.eesz.1M144.build.flash_size_bytes=0x100000
-menu.eesz.1M144.build.flash_ld=eagle.flash.1m144.ld
-menu.eesz.1M144.build.spiffs_pagesize=256
-menu.eesz.1M144.upload.maximum_size=876528
-menu.eesz.1M144.build.rfcal_addr=0xFC000
-menu.eesz.1M144.build.spiffs_start=0xD7000
-menu.eesz.1M144.build.spiffs_end=0xFB000
-menu.eesz.1M144.build.spiffs_blocksize=4096
-menu.eesz.1M160=1MB (FS:160KB OTA:~422KB)
-menu.eesz.1M160.build.flash_size=1M
-menu.eesz.1M160.build.flash_size_bytes=0x100000
-menu.eesz.1M160.build.flash_ld=eagle.flash.1m160.ld
-menu.eesz.1M160.build.spiffs_pagesize=256
-menu.eesz.1M160.upload.maximum_size=860144
-menu.eesz.1M160.build.rfcal_addr=0xFC000
-menu.eesz.1M160.build.spiffs_start=0xD3000
-menu.eesz.1M160.build.spiffs_end=0xFB000
-menu.eesz.1M160.build.spiffs_blocksize=4096
-menu.eesz.1M192=1MB (FS:192KB OTA:~406KB)
-menu.eesz.1M192.build.flash_size=1M
-menu.eesz.1M192.build.flash_size_bytes=0x100000
-menu.eesz.1M192.build.flash_ld=eagle.flash.1m192.ld
-menu.eesz.1M192.build.spiffs_pagesize=256
-menu.eesz.1M192.upload.maximum_size=827376
-menu.eesz.1M192.build.rfcal_addr=0xFC000
-menu.eesz.1M192.build.spiffs_start=0xCB000
-menu.eesz.1M192.build.spiffs_end=0xFB000
-menu.eesz.1M192.build.spiffs_blocksize=4096
-menu.eesz.1M256=1MB (FS:256KB OTA:~374KB)
-menu.eesz.1M256.build.flash_size=1M
-menu.eesz.1M256.build.flash_size_bytes=0x100000
-menu.eesz.1M256.build.flash_ld=eagle.flash.1m256.ld
-menu.eesz.1M256.build.spiffs_pagesize=256
-menu.eesz.1M256.upload.maximum_size=761840
-menu.eesz.1M256.build.rfcal_addr=0xFC000
-menu.eesz.1M256.build.spiffs_start=0xBB000
-menu.eesz.1M256.build.spiffs_end=0xFB000
-menu.eesz.1M256.build.spiffs_blocksize=4096
-menu.eesz.1M512=1MB (FS:512KB OTA:~246KB)
-menu.eesz.1M512.build.flash_size=1M
-menu.eesz.1M512.build.flash_size_bytes=0x100000
-menu.eesz.1M512.build.flash_ld=eagle.flash.1m512.ld
-menu.eesz.1M512.build.spiffs_pagesize=256
-menu.eesz.1M512.upload.maximum_size=499696
-menu.eesz.1M512.build.rfcal_addr=0xFC000
-menu.eesz.1M512.build.spiffs_start=0x7B000
-menu.eesz.1M512.build.spiffs_end=0xFB000
-menu.eesz.1M512.build.spiffs_blocksize=8192
-menu.eesz.1M=1MB (FS:none OTA:~502KB)
-menu.eesz.1M.build.flash_size=1M
-menu.eesz.1M.build.flash_size_bytes=0x100000
-menu.eesz.1M.build.flash_ld=eagle.flash.1m.ld
-menu.eesz.1M.build.spiffs_pagesize=256
-menu.eesz.1M.upload.maximum_size=1023984
-menu.eesz.1M.build.rfcal_addr=0xFC000
-menu.eesz.2M64=2MB (FS:64KB OTA:~992KB)
-menu.eesz.2M64.build.flash_size=2M
-menu.eesz.2M64.build.flash_size_bytes=0x200000
-menu.eesz.2M64.build.flash_ld=eagle.flash.2m64.ld
-menu.eesz.2M64.build.spiffs_pagesize=256
-menu.eesz.2M64.upload.maximum_size=1044464
-menu.eesz.2M64.build.rfcal_addr=0x1FC000
-menu.eesz.2M64.build.spiffs_start=0x1F0000
-menu.eesz.2M64.build.spiffs_end=0x1FB000
-menu.eesz.2M64.build.spiffs_blocksize=4096
-menu.eesz.2M128=2MB (FS:128KB OTA:~960KB)
-menu.eesz.2M128.build.flash_size=2M
-menu.eesz.2M128.build.flash_size_bytes=0x200000
-menu.eesz.2M128.build.flash_ld=eagle.flash.2m128.ld
-menu.eesz.2M128.build.spiffs_pagesize=256
-menu.eesz.2M128.upload.maximum_size=1044464
-menu.eesz.2M128.build.rfcal_addr=0x1FC000
-menu.eesz.2M128.build.spiffs_start=0x1E0000
-menu.eesz.2M128.build.spiffs_end=0x1FB000
-menu.eesz.2M128.build.spiffs_blocksize=4096
-menu.eesz.2M256=2MB (FS:256KB OTA:~896KB)
-menu.eesz.2M256.build.flash_size=2M
-menu.eesz.2M256.build.flash_size_bytes=0x200000
-menu.eesz.2M256.build.flash_ld=eagle.flash.2m256.ld
-menu.eesz.2M256.build.spiffs_pagesize=256
-menu.eesz.2M256.upload.maximum_size=1044464
-menu.eesz.2M256.build.rfcal_addr=0x1FC000
-menu.eesz.2M256.build.spiffs_start=0x1C0000
-menu.eesz.2M256.build.spiffs_end=0x1FB000
-menu.eesz.2M256.build.spiffs_blocksize=4096
-menu.eesz.2M512=2MB (FS:512KB OTA:~768KB)
-menu.eesz.2M512.build.flash_size=2M
-menu.eesz.2M512.build.flash_size_bytes=0x200000
-menu.eesz.2M512.build.flash_ld=eagle.flash.2m512.ld
-menu.eesz.2M512.build.spiffs_pagesize=256
-menu.eesz.2M512.upload.maximum_size=1044464
-menu.eesz.2M512.build.rfcal_addr=0x1FC000
-menu.eesz.2M512.build.spiffs_start=0x180000
-menu.eesz.2M512.build.spiffs_end=0x1FA000
-menu.eesz.2M512.build.spiffs_blocksize=8192
-menu.eesz.2M1M=2MB (FS:1MB OTA:~512KB)
-menu.eesz.2M1M.build.flash_size=2M
-menu.eesz.2M1M.build.flash_size_bytes=0x200000
-menu.eesz.2M1M.build.flash_ld=eagle.flash.2m1m.ld
-menu.eesz.2M1M.build.spiffs_pagesize=256
-menu.eesz.2M1M.upload.maximum_size=1044464
-menu.eesz.2M1M.build.rfcal_addr=0x1FC000
-menu.eesz.2M1M.build.spiffs_start=0x100000
-menu.eesz.2M1M.build.spiffs_end=0x1FA000
-menu.eesz.2M1M.build.spiffs_blocksize=8192
-menu.eesz.2M=2MB (FS:none OTA:~1019KB)
-menu.eesz.2M.build.flash_size=2M
-menu.eesz.2M.build.flash_size_bytes=0x200000
-menu.eesz.2M.build.flash_ld=eagle.flash.2m.ld
-menu.eesz.2M.build.spiffs_pagesize=256
-menu.eesz.2M.upload.maximum_size=1044464
-menu.eesz.2M.build.rfcal_addr=0x1FC000
+upload.resetmethod=--before default_reset --after hard_reset
+build.flash_mode=dio
+build.flash_flags=-DFLASHMODE_DIO
+build.flash_freq=40
 menu.eesz.4M2M=4MB (FS:2MB OTA:~1019KB)
 menu.eesz.4M2M.build.flash_size=4M
 menu.eesz.4M2M.build.flash_size_bytes=0x400000
@@ -1381,129 +944,10 @@ menu.eesz.4M.build.flash_ld=eagle.flash.4m.ld
 menu.eesz.4M.build.spiffs_pagesize=256
 menu.eesz.4M.upload.maximum_size=1044464
 menu.eesz.4M.build.rfcal_addr=0x3FC000
-menu.eesz.8M6M=8MB (FS:6MB OTA:~1019KB)
-menu.eesz.8M6M.build.flash_size=8M
-menu.eesz.8M6M.build.flash_size_bytes=0x800000
-menu.eesz.8M6M.build.flash_ld=eagle.flash.8m6m.ld
-menu.eesz.8M6M.build.spiffs_pagesize=256
-menu.eesz.8M6M.upload.maximum_size=1044464
-menu.eesz.8M6M.build.rfcal_addr=0x7FC000
-menu.eesz.8M6M.build.spiffs_start=0x200000
-menu.eesz.8M6M.build.spiffs_end=0x7FA000
-menu.eesz.8M6M.build.spiffs_blocksize=8192
-menu.eesz.8M7M=8MB (FS:7MB OTA:~512KB)
-menu.eesz.8M7M.build.flash_size=8M
-menu.eesz.8M7M.build.flash_size_bytes=0x800000
-menu.eesz.8M7M.build.flash_ld=eagle.flash.8m7m.ld
-menu.eesz.8M7M.build.spiffs_pagesize=256
-menu.eesz.8M7M.upload.maximum_size=1044464
-menu.eesz.8M7M.build.rfcal_addr=0x7FC000
-menu.eesz.8M7M.build.spiffs_start=0x100000
-menu.eesz.8M7M.build.spiffs_end=0x7FA000
-menu.eesz.8M7M.build.spiffs_blocksize=8192
-menu.eesz.16M14M=16MB (FS:14MB OTA:~1019KB)
-menu.eesz.16M14M.build.flash_size=16M
-menu.eesz.16M14M.build.flash_size_bytes=0x1000000
-menu.eesz.16M14M.build.flash_ld=eagle.flash.16m14m.ld
-menu.eesz.16M14M.build.spiffs_pagesize=256
-menu.eesz.16M14M.upload.maximum_size=1044464
-menu.eesz.16M14M.build.rfcal_addr=0xFFC000
-menu.eesz.16M14M.build.spiffs_start=0x200000
-menu.eesz.16M14M.build.spiffs_end=0xFFA000
-menu.eesz.16M14M.build.spiffs_blocksize=8192
-menu.eesz.16M15M=16MB (FS:15MB OTA:~512KB)
-menu.eesz.16M15M.build.flash_size=16M
-menu.eesz.16M15M.build.flash_size_bytes=0x1000000
-menu.eesz.16M15M.build.flash_ld=eagle.flash.16m15m.ld
-menu.eesz.16M15M.build.spiffs_pagesize=256
-menu.eesz.16M15M.upload.maximum_size=1044464
-menu.eesz.16M15M.build.rfcal_addr=0xFFC000
-menu.eesz.16M15M.build.spiffs_start=0x100000
-menu.eesz.16M15M.build.spiffs_end=0xFFA000
-menu.eesz.16M15M.build.spiffs_blocksize=8192
-menu.eesz.512K32=512KB (FS:32KB OTA:~230KB)
-menu.eesz.512K32.build.flash_size=512K
-menu.eesz.512K32.build.flash_size_bytes=0x80000
-menu.eesz.512K32.build.flash_ld=eagle.flash.512k32.ld
-menu.eesz.512K32.build.spiffs_pagesize=256
-menu.eesz.512K32.upload.maximum_size=466928
-menu.eesz.512K32.build.rfcal_addr=0x7C000
-menu.eesz.512K32.build.spiffs_start=0x73000
-menu.eesz.512K32.build.spiffs_end=0x7B000
-menu.eesz.512K32.build.spiffs_blocksize=4096
-menu.eesz.512K64=512KB (FS:64KB OTA:~214KB)
-menu.eesz.512K64.build.flash_size=512K
-menu.eesz.512K64.build.flash_size_bytes=0x80000
-menu.eesz.512K64.build.flash_ld=eagle.flash.512k64.ld
-menu.eesz.512K64.build.spiffs_pagesize=256
-menu.eesz.512K64.upload.maximum_size=434160
-menu.eesz.512K64.build.rfcal_addr=0x7C000
-menu.eesz.512K64.build.spiffs_start=0x6B000
-menu.eesz.512K64.build.spiffs_end=0x7B000
-menu.eesz.512K64.build.spiffs_blocksize=4096
-menu.eesz.512K128=512KB (FS:128KB OTA:~182KB)
-menu.eesz.512K128.build.flash_size=512K
-menu.eesz.512K128.build.flash_size_bytes=0x80000
-menu.eesz.512K128.build.flash_ld=eagle.flash.512k128.ld
-menu.eesz.512K128.build.spiffs_pagesize=256
-menu.eesz.512K128.upload.maximum_size=368624
-menu.eesz.512K128.build.rfcal_addr=0x7C000
-menu.eesz.512K128.build.spiffs_start=0x5B000
-menu.eesz.512K128.build.spiffs_end=0x7B000
-menu.eesz.512K128.build.spiffs_blocksize=4096
-menu.eesz.512K=512KB (FS:none OTA:~246KB)
-menu.eesz.512K.build.flash_size=512K
-menu.eesz.512K.build.flash_size_bytes=0x80000
-menu.eesz.512K.build.flash_ld=eagle.flash.512k.ld
-menu.eesz.512K.build.spiffs_pagesize=256
-menu.eesz.512K.upload.maximum_size=499696
-menu.eesz.512K.build.rfcal_addr=0x7C000
 menu.led.2=2
 menu.led.2.build.led=-DLED_BUILTIN=2
-menu.led.0=0
-menu.led.0.build.led=-DLED_BUILTIN=0
-menu.led.1=1
-menu.led.1.build.led=-DLED_BUILTIN=1
-menu.led.3=3
-menu.led.3.build.led=-DLED_BUILTIN=3
-menu.led.4=4
-menu.led.4.build.led=-DLED_BUILTIN=4
-menu.led.5=5
-menu.led.5.build.led=-DLED_BUILTIN=5
-menu.led.6=6
-menu.led.6.build.led=-DLED_BUILTIN=6
-menu.led.7=7
-menu.led.7.build.led=-DLED_BUILTIN=7
-menu.led.8=8
-menu.led.8.build.led=-DLED_BUILTIN=8
-menu.led.9=9
-menu.led.9.build.led=-DLED_BUILTIN=9
-menu.led.10=10
-menu.led.10.build.led=-DLED_BUILTIN=10
-menu.led.11=11
-menu.led.11.build.led=-DLED_BUILTIN=11
-menu.led.12=12
-menu.led.12.build.led=-DLED_BUILTIN=12
-menu.led.13=13
-menu.led.13.build.led=-DLED_BUILTIN=13
-menu.led.14=14
-menu.led.14.build.led=-DLED_BUILTIN=14
-menu.led.15=15
-menu.led.15.build.led=-DLED_BUILTIN=15
 menu.led.16=16
 menu.led.16.build.led=-DLED_BUILTIN=16
-menu.sdk.nonosdk_190703=nonos-sdk 2.2.1+100 (190703)
-menu.sdk.nonosdk_190703.build.sdk=NONOSDK22x_190703
-menu.sdk.nonosdk_191122=nonos-sdk 2.2.1+119 (191122)
-menu.sdk.nonosdk_191122.build.sdk=NONOSDK22x_191122
-menu.sdk.nonosdk_191105=nonos-sdk 2.2.1+113 (191105)
-menu.sdk.nonosdk_191105.build.sdk=NONOSDK22x_191105
-menu.sdk.nonosdk_191024=nonos-sdk 2.2.1+111 (191024)
-menu.sdk.nonosdk_191024.build.sdk=NONOSDK22x_191024
-menu.sdk.nonosdk221=nonos-sdk 2.2.1 (legacy)
-menu.sdk.nonosdk221.build.sdk=NONOSDK221
-menu.sdk.nonosdk3v0=nonos-sdk pre-3 (180626 known issues)
-menu.sdk.nonosdk3v0.build.sdk=NONOSDK3V0
 menu.ip.lm2f=v2 Lower Memory
 menu.ip.lm2f.build.lwip_include=lwip2/include
 menu.ip.lm2f.build.lwip_lib=-llwip2-536-feat
@@ -1626,7 +1070,7 @@ runtime.ide.version=108012
 target_package=esp8266
 target_platform=esp8266
 runtime.hardware.path=C:\Users\Tower\AppData\Local\arduino15\packages\esp8266\hardware\esp8266
-originalid=generic
+originalid=nodemcuv2
 intellisense.tools.path={compiler.toolchain.path}
 intellisense.include.paths={runtime.tools.xtensa-lx106-elf-gcc.path}\xtensa-lx106-elf\include\c++\4.8.2;{runtime.tools.xtensa-lx106-elf-gcc.path}\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;{runtime.tools.xtensa-lx106-elf-gcc.path}\xtensa-lx106-elf\include;{runtime.tools.xtensa-lx106-elf-gcc.path}\lib\gcc\xtensa-lx106-elf\4.8.2\include;{runtime.platform.path}\tools\sdk\include;{vm.intellisense.add-paths}
 tools.wwwfiles.name=ESP8266 Sketch Data Upload
@@ -1761,9 +1205,9 @@ runtime.tools.micronucleus-2.0a4.path=C:\Users\Tower\AppData\Local\arduino15\pac
 runtime.tools.stm32tools.path=C:\Users\Tower\AppData\Local\arduino15\packages\stm32duino\tools\stm32tools\2018.7.2
 runtime.tools.stm32tools-2018.7.2.path=C:\Users\Tower\AppData\Local\arduino15\packages\stm32duino\tools\stm32tools\2018.7.2
 runtime.tools.tools-avr.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
-runtime.vm.boardinfo.id=esp8266_generic
-runtime.vm.boardinfo.name=esp8266_generic
-runtime.vm.boardinfo.desc=Generic ESP8266 Module
+runtime.vm.boardinfo.id=esp8266_nodemcuv2
+runtime.vm.boardinfo.name=esp8266_nodemcuv2
+runtime.vm.boardinfo.desc=NodeMCU 1.0 (ESP-12E Module)
 runtime.vm.boardinfo.src_location=C:\Users\Tower\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.7.1
 ide.hint=Use installed IDE. Provides built-in hardware, reference/help and libraries.
 ide.location.key=Arduino16x

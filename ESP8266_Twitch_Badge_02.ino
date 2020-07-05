@@ -1,5 +1,8 @@
-// to do, user ability to enter user and password information, USB?, decide chat key words and methods, 
-//create gmail and twitch account to share for project, decide chat key words and methods "mods", fun stuff with LED's (be creative), design boards.
+//add Hex Flash Support for Firmware Updates. i.e firmware distrobution method without compilation
+//customizable keywords and parameters?
+//bitmap loading?
+//low power mode options and power requirements (battery capacity) ?
+
 
 #include "Creds.h"
 
@@ -8,24 +11,30 @@
 #define DEBUGPRINTSPEED 10
 #define PRINTSPEED 50
 #define MAXPRINTLENGTH 200
+#define MAXRGBCOLOR 64
 
-const String keyword_1 = "setled";
-const String keyword_2 = "print";
-const String keyword_3 = "flash";
+//commmands from twitch
+const String keyword_1 = "setled(";
+const String keyword_2 = "print(";
+const String keyword_3 = "flash(";
+const String keyword_4 = "vote(";
+const String keyword_5 = "vReset(";
 
 //------------GLOBAL VARS-----------------
 uint32_t Forecolor = 0x000800;
-uint8_t Brange = 12; //1, 3, 5 //set the brightness for each chanel in getrand();
+uint8_t Brange = MAXRGBCOLOR/4; //set the brightness for each chanel in getrand();
 uint8_t green; //used in getrand
 uint8_t red;   //used in getrand
 uint8_t blue;  //used in getrand
+
+unsigned int voteTally[3]={0,0,0}; //{candidate_1, candidate_2, Total votes}
 
 secret o; 
 
 
 void setup() { 
-setupHardware();    
-o.startwifi();
+  setupHardware();    
+  o.startwifi();
   
   printStringWithShiftL("  CONNECTED !!!   ", DEBUGPRINTSPEED,0,FONT_8X8); //see chartable for valid characters. all caps a few symbols, etc
   char ipCharArray[20];
@@ -33,20 +42,11 @@ o.startwifi();
   sprintf(ipCharArray, "%d.%d.%d.%d   ", ip[0], ip[1], ip[2], ip[3]);
   printStringWithShiftL(ipCharArray, DEBUGPRINTSPEED,0,FONT_8X8); //Print he local IP on the LED matrix
 
-
  //LedTest(2); //quick led hardware test
   
-  // server address, port, and URL path
-  webSocket.begin("irc-ws.chat.twitch.tv", 80, "/");
-
-  // event handler
-  webSocket.onEvent(webSocketEvent);
-
-  // try ever 5000 again if connection has failed
-  webSocket.setReconnectInterval(5000);
-
-
- 
+  webSocket.begin("irc-ws.chat.twitch.tv", 80, "/"); // server address, port, and URL path
+  webSocket.onEvent(webSocketEvent); // event handler
+  webSocket.setReconnectInterval(5000); // try ever 5000 again if connection has failed
 }
 
 
@@ -77,7 +77,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length){
       if(quote_start > 0) {
         int quote_end = payload_str.length();
         String cmd_str = payload_str.substring(quote_start+2, quote_end);
-        Serial.printf("\CMD %s\n", cmd_str.c_str()); //DEBUG
+        Serial.printf("\nCMD %s\n", cmd_str.c_str()); //DEBUG
         parseMessage(cmd_str);
       }
       break;
@@ -94,46 +94,46 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length){
 void parseMessage(String cmd_str){
 		
 	//setled(i,g,r,b)  e.g. $setled(4,255,255,255)
-  if(cmd_str.indexOf(keyword_1)>=0) {
-	int cmd_start = keyword_1.length()+1;
-	int cmd_end = cmd_str.length()-1; //<--------------------------------------------------------NEED tp manage the string end
+  if(cmd_str.indexOf(keyword_1)>=0 && cmd_str.indexOf(")")>0) {
+	int cmd_start = keyword_1.length();
+	int cmd_end = cmd_str.indexOf(")");
 	String buffer_str = cmd_str.substring(cmd_start,cmd_end);
-	Serial.print(buffer_str.c_str());
+	//Serial.print(buffer_str.c_str());
 	unsigned int i, r, g, b;
     sscanf(buffer_str.c_str(), "%d,%d,%d,%d%*s", &i, &g, &r, &b);
-	Serial.printf("\ni=%d  g=%d  g=%d  g=%d\n",i, g, r, b);
-    if(!(i<0 || i>NUMPIXELS-1 || g<0 || g> 255 || r<0 || r> 255 || b<0 || b> 255)){ //check that vars are in "bounds"
+	Serial.printf("i=%d  g=%d  g=%d  g=%d\n",i, g, r, b);
+    if(!(i<0 || i>NUMPIXELS-1 || g<0 || g> MAXRGBCOLOR || r<0 || r> MAXRGBCOLOR || b<0 || b> MAXRGBCOLOR)){ //check that vars are in "bounds"
 	  	  setPixelColor(i,Color(g,r,b));
 	  	  FastLED.show();
 	}else{
-	Serial.printf("%s ERROR",keyword_1.c_str());
+	Serial.printf("%s ERROR !!!",keyword_1.c_str());
 	}
   }
   
 	//print e.g. $print(HELLO)
-    if(cmd_str.indexOf(keyword_2)>=0) {
-	    int cmd_start = keyword_2.length()+1;
-	    int cmd_end = cmd_str.length()-1;
+    if(cmd_str.indexOf(keyword_2)>=0 && cmd_str.indexOf(")")>0) {
+	    int cmd_start = keyword_2.length();
+	    int cmd_end = cmd_str.indexOf(")");
 	    if(cmd_end > 0 && cmd_end < MAXPRINTLENGTH){
 			String buffer_str = cmd_str.substring(cmd_start,cmd_end);
-			Serial.print(buffer_str.c_str());
+			//Serial.print(buffer_str.c_str());
 			printStringWithShiftL("    ", PRINTSPEED,0,FONT_8X8);
 			printStringWithShiftL(buffer_str.c_str(),PRINTSPEED,0,FONT_8X8);
 			printStringWithShiftL("    ", PRINTSPEED,0,FONT_8X8);
 		}else{
-		Serial.printf("%s ERROR",keyword_2.c_str());
+		Serial.printf("%s ERROR !!!",keyword_2.c_str());
 		}
     }
   
 	//flash e.g: $flash(3)
-  if(cmd_str.indexOf(keyword_3)>=0) {
-	  int cmd_start = keyword_3.length()+1;
-	  int cmd_end = cmd_str.length()-1;
+  if(cmd_str.indexOf(keyword_3)>=0 && cmd_str.indexOf(")")>0) {
+	  int cmd_start = keyword_3.length();
+	  int cmd_end = cmd_str.indexOf(")");
 	  String buffer_str = cmd_str.substring(cmd_start,cmd_end);
-	  Serial.print(buffer_str.c_str());
+	  //Serial.print(buffer_str.c_str());
 	  unsigned int i;
 	  sscanf(buffer_str.c_str(), "%d%*s", &i);
-	  Serial.printf("\ni=%d\n",i);
+	  Serial.printf("i=%d\n",i);
 	  if(!(i<0 || i>NUMPIXELS-1)){ //check that vars are in "bounds"
 		  for(int k=0; k<i; k++){
 			getrand();
@@ -142,21 +142,49 @@ void parseMessage(String cmd_str){
 		  }
 		  ColorWipe(0,5);
 	  }else{
-	  Serial.printf("%s ERROR",keyword_3.c_str());
+	  Serial.printf("%s ERROR !!!",keyword_3.c_str());
 	  }
   }
-      
-}
-
-
-
-void setPixelColor(int i, uint32_t c){ //input a 32-bit color. write the g,r,b to led[i] color buffer
-	leds[i].g = ((c >> 16) & 0xFF); //Green
-	leds[i].r = ((c >> 8) & 0xFF); //Red
-	leds[i].b = ((c >> 0) & 0xFF); //Blue
-}
-uint32_t Color(uint8_t g, uint8_t r, uint8_t b) {
-	return ((uint32_t)g << 16) | ((uint32_t)r <<  8) | b;
+  
+  
+  	//vote e.g: $vote(0) or $vote(1)
+  	if(cmd_str.indexOf(keyword_4)>=0 && cmd_str.indexOf(")")>0) {
+	  	unsigned int cmd_start = keyword_4.length();
+	  	unsigned int cmd_end = cmd_str.indexOf(")");
+	  	String buffer_str = cmd_str.substring(cmd_start,cmd_end);
+	  	//Serial.print(buffer_str.c_str());
+	  	unsigned int i;
+	  	float votePercent[2]={0,0};
+		uint8_t voteColorMax = MAXRGBCOLOR; //Max brightness for each voting color (red,blue)
+		uint8_t voteColor[2];
+		sscanf(buffer_str.c_str(), "%d%*s", &i);
+	  	Serial.printf("i=%d\n",i);
+	  	if(!(i<0 || i>1)){ //check that vars are in "bounds"
+			voteTally[2]++; //increase the total vote count
+			if(!i) voteTally[0]++; //increase the candidate vote number
+			if(i) voteTally[1]++;
+			votePercent[0] = (float)voteTally[0]/(float)voteTally[2]; //votes for 1 / total votes
+			votePercent[1] = (float)voteTally[1]/(float)voteTally[2]; //vote for 2 / total votes
+			for(int i=0; i<2; i++) {
+				voteColor[i] = (uint8_t) (votePercent[i]*voteColorMax);
+				//Serial.printf("  VC Percent%d: %f  ", i, votePercent[i]); //DEBUG
+				//Serial.printf("  VC%d: %d  ", i, (unsigned int) voteColor[i]); //DEBUG
+			}
+			  	RGBFillScreen(Color(0, voteColor[0],voteColor[1]));
+			  	FastLED.show();
+		  	}else{
+		  	Serial.printf("%s ERROR !!!",keyword_4.c_str());
+	  	}
+  	}
+	  
+	//vReset e.g: $vReset
+	if(cmd_str.indexOf(keyword_5)>=0) {
+		for(int i=0; i<3; i++) voteTally[i] = 0; //reset the vote tally and the vote count
+		Serial.printf("vote reset\n"); //DEBUG
+		getrand();
+		ColorWipe(Forecolor,10);
+		ColorWipe(0,10);
+	}
 }
 
 
@@ -181,6 +209,25 @@ void PollButtons(){ //read the Buttons status
 	
 }
 
+
+void setPixelColor(int i, uint32_t c){ //input a 32-bit color. write the g,r,b to led[i] color buffer
+	leds[i].g = ((c >> 16) & 0xFF); //Green
+	leds[i].r = ((c >> 8) & 0xFF); //Red
+	leds[i].b = ((c >> 0) & 0xFF); //Blue
+}
+
+
+uint32_t Color(uint8_t g, uint8_t r, uint8_t b) {
+	return ((uint32_t)g << 16) | ((uint32_t)r <<  8) | b;
+}
+
+
+void RGBFillScreen(uint32_t c){
+	for(int i=0; i<NUMPIXELS; i++){
+		setPixelColor(i,c);
+	}
+	FastLED.show();
+}
 
 void ClearMatrix(){
 	for (int x=0; x<numCols; x++){
