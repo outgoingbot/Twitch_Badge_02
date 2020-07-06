@@ -56,6 +56,7 @@
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
+      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -113,6 +114,7 @@
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
+      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -734,6 +736,7 @@ build.arch=ESP8266
         <visualmicro.platform.name>esp8266</visualmicro.platform.name>
         <arduino.upload.port>COM18</arduino.upload.port>
         <custom_esp8266_generic_FlashFreq>80</custom_esp8266_generic_FlashFreq>
+        <config.Debug.customdebug_esp8266_nodemcuv2_debugger_type>universal</config.Debug.customdebug_esp8266_nodemcuv2_debugger_type>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>
@@ -751,6 +754,7 @@ build.arch=ESP8266
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
+      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -808,6 +812,7 @@ build.arch=ESP8266
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
+      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -1429,6 +1434,7 @@ build.arch=ESP8266
         <visualmicro.platform.name>esp8266</visualmicro.platform.name>
         <arduino.upload.port>COM18</arduino.upload.port>
         <custom_esp8266_generic_FlashFreq>80</custom_esp8266_generic_FlashFreq>
+        <config.Debug.customdebug_esp8266_nodemcuv2_debugger_type>universal</config.Debug.customdebug_esp8266_nodemcuv2_debugger_type>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>

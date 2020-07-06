@@ -19,7 +19,7 @@ class secret
 String ssid="";
 String password="";
 // Parameters for Twitch channel
-String twitch_oauth_token= "";
+String twitch_oauth_token= "oauth:";
 String twitch_nick="esp8266led";
 String twitch_channel="#esp8266led";
 

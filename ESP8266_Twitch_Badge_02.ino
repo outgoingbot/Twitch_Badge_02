@@ -5,20 +5,23 @@
 
 
 #include "Creds.h"
+#include "Images.h"
 
 #define FONT_3X5 0
 #define FONT_8X8 1
-#define DEBUGPRINTSPEED 10
+#define DEBUGPRINTSPEED 20
 #define PRINTSPEED 50
-#define MAXPRINTLENGTH 200
+#define MAXPRINTLENGTH 200 //put this in the print function as a const int
 #define MAXRGBCOLOR 64
+#define MAXFLASH 50
 
 //commmands from twitch
-const String keyword_1 = "setled(";
-const String keyword_2 = "print(";
-const String keyword_3 = "flash(";
-const String keyword_4 = "vote(";
-const String keyword_5 = "vReset(";
+const String keyword_1 = "setled(";	//set a rgb led (setpixel)
+const String keyword_2 = "print(";	//scroll text on the matrix (printwithshiftleft)
+const String keyword_3 = "flash(";	//flash the rgb leds (colorwipe)
+const String keyword_4 = "vote(";	//blue to red scale
+const String keyword_5 = "vReset(";	//reset the vote
+const String keyword_6 = "heart(";	//flash hearts (scale bitmap)
 
 //------------GLOBAL VARS-----------------
 uint32_t Forecolor = 0x000800;
@@ -36,14 +39,19 @@ void setup() {
   setupHardware();    
   o.startwifi();
   
-  printStringWithShiftL("  CONNECTED !!!   ", DEBUGPRINTSPEED,0,FONT_8X8); //see chartable for valid characters. all caps a few symbols, etc
+  printStringWithShiftL("  CONNECTED !!!   ", DEBUGPRINTSPEED,4,FONT_8X8); //see chartable for valid characters. all caps a few symbols, etc
   char ipCharArray[20];
   IPAddress ip = WiFi.localIP();
   sprintf(ipCharArray, "%d.%d.%d.%d   ", ip[0], ip[1], ip[2], ip[3]);
-  printStringWithShiftL(ipCharArray, DEBUGPRINTSPEED,0,FONT_8X8); //Print he local IP on the LED matrix
+  printStringWithShiftL(ipCharArray, DEBUGPRINTSPEED,4,FONT_8X8); //Print he local IP on the LED matrix
 
- //LedTest(2); //quick led hardware test
-  
+  LedTest(2); //quick led hardware test
+  /*
+  drawBitmap(bitmap1);
+  lmd.display(); //must display after draw bitmap !!!!!!!!
+  delay(1000);
+  rotateScreen(4,-1); //number of rotations
+  */
   webSocket.begin("irc-ws.chat.twitch.tv", 80, "/"); // server address, port, and URL path
   webSocket.onEvent(webSocketEvent); // event handler
   webSocket.setReconnectInterval(5000); // try ever 5000 again if connection has failed
@@ -117,24 +125,24 @@ void parseMessage(String cmd_str){
 	    if(cmd_end > 0 && cmd_end < MAXPRINTLENGTH){
 			String buffer_str = cmd_str.substring(cmd_start,cmd_end);
 			//Serial.print(buffer_str.c_str());
-			printStringWithShiftL("    ", PRINTSPEED,0,FONT_8X8);
-			printStringWithShiftL(buffer_str.c_str(),PRINTSPEED,0,FONT_8X8);
-			printStringWithShiftL("    ", PRINTSPEED,0,FONT_8X8);
+			printStringWithShiftL("    ", PRINTSPEED,4,FONT_8X8);
+			printStringWithShiftL(buffer_str.c_str(),PRINTSPEED,4,FONT_8X8);
+			printStringWithShiftL("    ", PRINTSPEED,4,FONT_8X8);
 		}else{
 		Serial.printf("%s ERROR !!!",keyword_2.c_str());
 		}
     }
   
-	//flash e.g: $flash(3)
+	//flash e.g: $flash(3) //max flash 100
   if(cmd_str.indexOf(keyword_3)>=0 && cmd_str.indexOf(")")>0) {
 	  int cmd_start = keyword_3.length();
 	  int cmd_end = cmd_str.indexOf(")");
 	  String buffer_str = cmd_str.substring(cmd_start,cmd_end);
 	  //Serial.print(buffer_str.c_str());
 	  unsigned int i;
-	  sscanf(buffer_str.c_str(), "%d%*s", &i);
+	  sscanf(buffer_str.c_str(), "%d", &i);
 	  Serial.printf("i=%d\n",i);
-	  if(!(i<0 || i>NUMPIXELS-1)){ //check that vars are in "bounds"
+	  if(!(i<0 || i>MAXFLASH)){ //check that vars are in "bounds"
 		  for(int k=0; k<i; k++){
 			getrand();
 			ColorWipe(Forecolor,1);
@@ -146,6 +154,38 @@ void parseMessage(String cmd_str){
 	  }
   }
   
+  	//heart e.g: $heart(3)
+  	if(cmd_str.indexOf(keyword_6)>=0 && cmd_str.indexOf(")")>0) {
+	  	int cmd_start = keyword_6.length();
+	  	int cmd_end = cmd_str.indexOf(")");
+	  	String buffer_str = cmd_str.substring(cmd_start,cmd_end);
+	  	//Serial.print(buffer_str.c_str());
+	  	unsigned int i;
+	  	sscanf(buffer_str.c_str(), "%d", &i);
+	  	Serial.printf("i=%d\n",i);
+	  	if(!(i<0 || i>MAXFLASH)){ //check that vars are in "bounds"
+		  	lmd.clear();
+		  	for(int k=0; k<i; k++){
+			  	getrand();
+			  	ColorFill(Forecolor);
+			  	lmd.clear();
+			  	drawBitmap(bitmap1);
+			  	scaleScreen(0.05); //shrink to 0.05
+			  	getrand();
+			  	ColorFill(Forecolor);
+			  	lmd.clear();
+			  	drawBitmap(bitmap1);
+			  	scaleScreen(1.0); // grow to 1.0
+		  	}
+		  	lmd.clear();
+		  	drawBitmap(bitmap1);
+		  	lmd.display();
+		  	ColorFill(0);
+		  	}else{
+		  	Serial.printf("%s ERROR !!!",keyword_6.c_str());
+	  	}
+  	}
+  	
   
   	//vote e.g: $vote(0) or $vote(1)
   	if(cmd_str.indexOf(keyword_4)>=0 && cmd_str.indexOf(")")>0) {
@@ -177,7 +217,7 @@ void parseMessage(String cmd_str){
 	  	}
   	}
 	  
-	//vReset e.g: $vReset
+	//vReset e.g: $vReset()
 	if(cmd_str.indexOf(keyword_5)>=0) {
 		for(int i=0; i<3; i++) voteTally[i] = 0; //reset the vote tally and the vote count
 		Serial.printf("vote reset\n"); //DEBUG
@@ -191,7 +231,6 @@ void parseMessage(String cmd_str){
 
 void PollButtons(){ //read the Buttons status
 	if(!digitalRead(BTN1_PIN)){
-		//cli();//stop interrupts
 		lmd.clear();
 		while (digitalRead(BTN1_PIN) == LOW) delay(10);
 		// do stuff
@@ -238,6 +277,42 @@ void ClearMatrix(){
 	lmd.display();
 }
 
+void scaleScreen(float sclPercent){ //scale the image to a min: 0.05 and max: 1.0
+	storeScreen();
+	if(sclPercent<1){
+		for(float i=1; i>=sclPercent; i-=.05){ //shrink the image
+			lmd.clear(); //needed?
+			for(int x=0; x<16; x++){
+				for(int y=0; y<16; y++){
+					int myXT = (int) (myOffset+((x-myOffset)*(i)));
+					int myYT = (int) (myOffset+((y-myOffset)*(i)));
+					SetLEDxy(myXT,myYT,buffTemp[x][y]);
+				}
+			}
+			lmd.display();
+			delay(10);
+		}
+	}
+	if(sclPercent>=1){
+		for(float i=.05; i<=sclPercent; i+=.05){ //grow the image
+			lmd.clear(); //needed?
+			for(int x=0; x<16; x++){
+				for(int y=0; y<16; y++){
+					int myXT = (int) (myOffset+((x-myOffset)*(i)));
+					int myYT = (int) (myOffset+((y-myOffset)*(i)));
+					SetLEDxy(myXT,myYT,buffTemp[x][y]);
+				}
+			}
+			lmd.display();
+			delay(10);
+		}
+	}
+	//if(ceilf(sclPercent) == sclPercent) printStored(); //if angle to rotate is integer value then fix rotation error by printing the tempbuff
+}
+
+
+
+
 
 void rotateScreen(float angPercent, int dir){ //rotates all pixels theta rads counter clockwise
 	//dir: 1 for CCW, -1 for CW
@@ -253,6 +328,7 @@ void rotateScreen(float angPercent, int dir){ //rotates all pixels theta rads co
 			}
 		}
 		lmd.display();
+		delay(10);
 	}
 	if(ceilf(angPercent) == angPercent) printStored(); //if angle to rotate is integer value then fix rotation error by printing the tempbuff
 }
@@ -293,7 +369,7 @@ bool GetLEDxy(int x, int y){ //just pass in cartesian (x,y) pairs
 
 
 
-void drawBitmap(char* image){ //draws a bitmap from a hex array defined at top
+void drawBitmap(const char* image){ //draws a bitmap from a hex array defined at top
 	byte Tempbuff = 0;
 	int mySide = 1;
 	int myYY = 0;
@@ -307,11 +383,11 @@ void drawBitmap(char* image){ //draws a bitmap from a hex array defined at top
 			mySide = 8;
 		}
 		for (int k = 0; k < 8; k++) {
-			if (!(Tempbuff&b)) SetLEDxy(mySide+k,numRows-1-myYY,1);
+			if ((Tempbuff&b)) SetLEDxy(mySide+k,numRows-1-myYY,1);
 			b = b >> 1;
 		}
 	}
-	lmd.display();
+	//lmd.display();
 }
 
 
@@ -348,7 +424,7 @@ void printChar(char c, int x, int y){
 			b = b << 1;
 		}
 
-	}
+	}+
 }
 
 */
@@ -371,8 +447,8 @@ void printCharWithShiftL(char c, int shift_speed, int textpos, int font) {
 		for (int j = 0; j < 3; j++) {
 			mybuff = pgm_read_byte(&(CH_3x5[3*c+j]));
 			uint8_t b = 0b00000001;
-			for (int k = textpos; k < textpos+5; k++) {
-				if (mybuff&b) SetLEDxy(numCols-1,k,1);
+			for (int k = 0; k < 5; k++) {
+				if (mybuff&b) SetLEDxy(numCols-1,k+textpos,1);
 				b = b << 1;
 			}
 			lmd.display();
@@ -385,7 +461,7 @@ void printCharWithShiftL(char c, int shift_speed, int textpos, int font) {
 		for (int i = 0; i < 8; i++) mybuff[i] = pgm_read_byte(&(CH_8x8[8*c+i])); //copy all 8 bytes from font
 		uint8_t b = 0b10000000;												//Mask Location starts at 1
 		for (int i = 0; i < 8; i++){											//loop through all 8 bit positions
-			for (int k = 0; k < 8; k++) if (mybuff[k]&b) SetLEDxy(numCols-1,k,1);//loop through each byte
+			for (int k = 0; k < 8; k++) if (mybuff[k]&b) SetLEDxy(numCols-1,k+textpos,1);//loop through each byte
 			b = b >> 1;
 			lmd.display(); //display a column
 			ShiftLEDLeft(); //shift every column one column left (one space between letters)
@@ -437,6 +513,12 @@ void ColorWipe(uint32_t c, int s){
 	}
 }
 
+void ColorFill(uint32_t c){
+	for(int i=0;i<NUMPIXELS;i++) setPixelColor(i, c); // Moderately bright green color.
+	FastLED.show(); // This sends the updated pixel color to the hardware.
+}
+
+
 void getrand() { // trying to make it //the goal is to get a random forecolor that is not white, then find the opposite of
 	switch (random(0, 3)) {
 		case 0:
@@ -469,15 +551,16 @@ void getrand() { // trying to make it //the goal is to get a random forecolor th
 	Forecolor =  Color(green,red,blue);
 }
 
+
 void LedTest(int s){
-	for(int x=0; x<numCols-1; x++){
-		for(int y=0; y<numRows-1; y++){
+	for(int x=0; x<numCols; x++){
+		for(int y=0; y<numRows; y++){
 			SetLEDxy(y,x,1);
 			lmd.display();
 			delay(s);
-			SetLEDxy(y,x,0);
-			lmd.display();
-			delay(s);
+			//SetLEDxy(y,x,0);
+			//lmd.display();
+			//delay(s);
 		}
 	}
 	
