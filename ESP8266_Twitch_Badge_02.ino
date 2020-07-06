@@ -1,11 +1,12 @@
 //add Hex Flash Support for Firmware Updates. i.e firmware distrobution method without compilation
 //customizable keywords and parameters?
-//bitmap loading?
+//bitmap side loading?
 //low power mode options and power requirements (battery capacity) ?
 
-
+#include "Hardware.h"
 #include "Creds.h"
 #include "Images.h"
+
 
 #define FONT_3X5 0
 #define FONT_8X8 1
@@ -80,13 +81,13 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length){
   
     case WStype_TEXT:{ // If we get a response, print it to Serial
       Serial.printf("\nPAYLOAD %s\n", payload); //DEBUG
-      String payload_str = String((char*) payload);
-      int quote_start = payload_str.indexOf(":$");
-      if(quote_start > 0) {
-        int quote_end = payload_str.length();
-        String cmd_str = payload_str.substring(quote_start+2, quote_end);
+      String payload_str = String((char*) payload); //copy the entire TEXT payload into a string
+      int quote_start = payload_str.indexOf(":$"); //search for and return the index of the command special character  ($)
+      if(quote_start > 0) {//if the special character exits
+        int quote_end = payload_str.length(); //
+        String cmd_str = payload_str.substring(quote_start+2, quote_end);  //copy the TEXT payload, starting after the special character, to a new string
         Serial.printf("\nCMD %s\n", cmd_str.c_str()); //DEBUG
-        parseMessage(cmd_str);
+        parseMessage(cmd_str); //send the partially stripped string to the parsing function
       }
       break;
 	}
@@ -99,10 +100,10 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length){
 }
 
 
-void parseMessage(String cmd_str){
+void parseMessage(String cmd_str){ //parses the string in differnt manner bases on the the keyword after the special character
 		
 	//setled(i,g,r,b)  e.g. $setled(4,255,255,255)
-  if(cmd_str.indexOf(keyword_1)>=0 && cmd_str.indexOf(")")>0) {
+  if(cmd_str.indexOf(keyword_1)>=0 && cmd_str.indexOf(")")>0) { //check for a keyword and the closed parenthesis 
 	int cmd_start = keyword_1.length();
 	int cmd_end = cmd_str.indexOf(")");
 	String buffer_str = cmd_str.substring(cmd_start,cmd_end);
@@ -119,7 +120,7 @@ void parseMessage(String cmd_str){
   }
   
 	//print e.g. $print(HELLO)
-    if(cmd_str.indexOf(keyword_2)>=0 && cmd_str.indexOf(")")>0) {
+    if(cmd_str.indexOf(keyword_2)>=0 && cmd_str.indexOf(")")>0) { //check for a keyword and the closed parenthesis
 	    int cmd_start = keyword_2.length();
 	    int cmd_end = cmd_str.indexOf(")");
 	    if(cmd_end > 0 && cmd_end < MAXPRINTLENGTH){
@@ -134,7 +135,7 @@ void parseMessage(String cmd_str){
     }
   
 	//flash e.g: $flash(3) //max flash 100
-  if(cmd_str.indexOf(keyword_3)>=0 && cmd_str.indexOf(")")>0) {
+  if(cmd_str.indexOf(keyword_3)>=0 && cmd_str.indexOf(")")>0) { //check for a keyword and the closed parenthesis
 	  int cmd_start = keyword_3.length();
 	  int cmd_end = cmd_str.indexOf(")");
 	  String buffer_str = cmd_str.substring(cmd_start,cmd_end);
@@ -155,7 +156,7 @@ void parseMessage(String cmd_str){
   }
   
   	//heart e.g: $heart(3)
-  	if(cmd_str.indexOf(keyword_6)>=0 && cmd_str.indexOf(")")>0) {
+  	if(cmd_str.indexOf(keyword_6)>=0 && cmd_str.indexOf(")")>0) { //check for a keyword and the closed parenthesis
 	  	int cmd_start = keyword_6.length();
 	  	int cmd_end = cmd_str.indexOf(")");
 	  	String buffer_str = cmd_str.substring(cmd_start,cmd_end);
@@ -188,7 +189,7 @@ void parseMessage(String cmd_str){
   	
   
   	//vote e.g: $vote(0) or $vote(1)
-  	if(cmd_str.indexOf(keyword_4)>=0 && cmd_str.indexOf(")")>0) {
+  	if(cmd_str.indexOf(keyword_4)>=0 && cmd_str.indexOf(")")>0) { //check for a keyword and the closed parenthesis
 	  	unsigned int cmd_start = keyword_4.length();
 	  	unsigned int cmd_end = cmd_str.indexOf(")");
 	  	String buffer_str = cmd_str.substring(cmd_start,cmd_end);
@@ -210,7 +211,7 @@ void parseMessage(String cmd_str){
 				//Serial.printf("  VC Percent%d: %f  ", i, votePercent[i]); //DEBUG
 				//Serial.printf("  VC%d: %d  ", i, (unsigned int) voteColor[i]); //DEBUG
 			}
-			  	RGBFillScreen(Color(0, voteColor[0],voteColor[1]));
+			  	ColorFill(Color(0, voteColor[0],voteColor[1]));
 			  	FastLED.show();
 		  	}else{
 		  	Serial.printf("%s ERROR !!!",keyword_4.c_str());
@@ -218,7 +219,7 @@ void parseMessage(String cmd_str){
   	}
 	  
 	//vReset e.g: $vReset()
-	if(cmd_str.indexOf(keyword_5)>=0) {
+	if(cmd_str.indexOf(keyword_5)>=0) { //check for a keyword and the closed parenthesis
 		for(int i=0; i<3; i++) voteTally[i] = 0; //reset the vote tally and the vote count
 		Serial.printf("vote reset\n"); //DEBUG
 		getrand();
@@ -261,30 +262,21 @@ uint32_t Color(uint8_t g, uint8_t r, uint8_t b) {
 }
 
 
-void RGBFillScreen(uint32_t c){
-	for(int i=0; i<NUMPIXELS; i++){
-		setPixelColor(i,c);
-	}
-	FastLED.show();
-}
 
-void ClearMatrix(){
-	for (int x=0; x<numCols; x++){
-		for (int y=0; y<numRows; y++){
-			lmd.setPixel(x,y,0);
-		}
-	}
+void ClearMatrix(){ //this would be better off just calling lmd.clear() and lmd.display();
+	lmd.clear();
 	lmd.display();
 }
 
-void scaleScreen(float sclPercent){ //scale the image to a min: 0.05 and max: 1.0
+//change this to pass in a start size % and a end size %.   like 1.0 to 0.5 or 0.05 to 1.0 etc
+void scaleScreen(float sclPercent){ //scale the all the pixels currently on the screen.   min: 0.05 and max: 1.0 i guess
 	storeScreen();
 	if(sclPercent<1){
-		for(float i=1; i>=sclPercent; i-=.05){ //shrink the image
+		for(float i=1; i>=sclPercent; i-=.05){ //step through the scaling factors. shrink the image
 			lmd.clear(); //needed?
-			for(int x=0; x<16; x++){
+			for(int x=0; x<16; x++){ //perform the matrix multiplication
 				for(int y=0; y<16; y++){
-					int myXT = (int) (myOffset+((x-myOffset)*(i)));
+					int myXT = (int) (myOffset+((x-myOffset)*(i))); //scaling matrix
 					int myYT = (int) (myOffset+((y-myOffset)*(i)));
 					SetLEDxy(myXT,myYT,buffTemp[x][y]);
 				}
@@ -294,11 +286,11 @@ void scaleScreen(float sclPercent){ //scale the image to a min: 0.05 and max: 1.
 		}
 	}
 	if(sclPercent>=1){
-		for(float i=.05; i<=sclPercent; i+=.05){ //grow the image
+		for(float i=.05; i<=sclPercent; i+=.05){ //step through the scaling factors. grow the image
 			lmd.clear(); //needed?
-			for(int x=0; x<16; x++){
+			for(int x=0; x<16; x++){ //perform the matrix multiplication
 				for(int y=0; y<16; y++){
-					int myXT = (int) (myOffset+((x-myOffset)*(i)));
+					int myXT = (int) (myOffset+((x-myOffset)*(i))); //scaling matrix
 					int myYT = (int) (myOffset+((y-myOffset)*(i)));
 					SetLEDxy(myXT,myYT,buffTemp[x][y]);
 				}
@@ -307,22 +299,21 @@ void scaleScreen(float sclPercent){ //scale the image to a min: 0.05 and max: 1.
 			delay(10);
 		}
 	}
-	//if(ceilf(sclPercent) == sclPercent) printStored(); //if angle to rotate is integer value then fix rotation error by printing the tempbuff
 }
 
 
 
 
 
-void rotateScreen(float angPercent, int dir){ //rotates all pixels theta rads counter clockwise
+void rotateScreen(float angPercent, int dir){ //rotates all pixels currently on the screen theta rads counter clockwise
 	//dir: 1 for CCW, -1 for CW
 	storeScreen();
 	int angleIndex = 0;
-	for(float i=0; i<=2*angPercent; i+=.05){
+	for(float i=0; i<=2*angPercent; i+=.05){ //step though the angles
 		PollButtons();
-		for(int x=0; x<16; x++){
+		for(int x=0; x<16; x++){  //perform the matrix multiplication
 			for(int y=0; y<16; y++){
-				int myXT = (int) (myOffset+(((x-myOffset)*cos(M_PI*i))-(dir)*((y-myOffset)*sin(M_PI*i))));
+				int myXT = (int) (myOffset+(((x-myOffset)*cos(M_PI*i))-(dir)*((y-myOffset)*sin(M_PI*i)))); //rotation matrix
 				int myYT = (int) (myOffset+(((x-myOffset)*(dir)*sin(M_PI*i))+((y-myOffset)*cos(M_PI*i))));
 				SetLEDxy(myXT,myYT,buffTemp[x][y]);
 			}
@@ -387,10 +378,10 @@ void drawBitmap(const char* image){ //draws a bitmap from a hex array defined at
 			b = b >> 1;
 		}
 	}
-	//lmd.display();
+	//lmd.display(); //this was causing problems with scale. need to call lmd.display after drawbitmap()
 }
 
-
+// write all 1 or 0 to the matrix
 void FillScreen(bool c){
 	for(int x=0; x<16; x++){
 		for(int y=0; y<16; y++){
@@ -482,8 +473,8 @@ void ShiftLEDLeft () {   //Shift columns right 1 palce
 	lmd.display();
 }
 
-//shift mono leds Left function
-void ShiftLEDDown () {   //Shift columns right 1 palce
+//shift mono leds Down function
+void ShiftLEDDown () {   //Shift rows down 1 place
 	for (int y = numRows-2; y >= 0; y--) { //read one behind left
 		for (int x = 0; x <= numCols-1; x++) { //read each Led value
 			SetLEDxy(x,y+1,GetLEDxy(x,y));
@@ -492,34 +483,34 @@ void ShiftLEDDown () {   //Shift columns right 1 palce
 	lmd.display();
 }
 
-void BlankColumn(int c) {    //wipes the coulmn 0 to clear out jjunk, to get ready for shifting
+void BlankColumn(int c) {    //clear an entire column
 	for (int w = 0; w <= numRows-1; w++) {
 		SetLEDxy(c,w,0);
 	}
 }
 
-void BlankRow(int c) {    //wipes the coulmn 0 to clear out jjunk, to get ready for shifting
+void BlankRow(int c) {    //clear an entire row
 	for (int w = 0; w <= numCols-1; w++) {
 		SetLEDxy(w,c,0);
 	}
 }
 
 
-void ColorWipe(uint32_t c, int s){
+void ColorWipe(uint32_t c, int s){ //fill all the rgbs with a single color, one at a time with delay
 	for(int i=0;i<NUMPIXELS;i++){
-		setPixelColor(i, c); // Moderately bright green color.
+		setPixelColor(i, c); 
 		FastLED.show(); // This sends the updated pixel color to the hardware.
 		delay(s); // Delay for a period of time (in milliseconds).
 	}
 }
 
-void ColorFill(uint32_t c){
-	for(int i=0;i<NUMPIXELS;i++) setPixelColor(i, c); // Moderately bright green color.
+void ColorFill(uint32_t c){ //fill all the rgbs with a single color and no delay
+	for(int i=0;i<NUMPIXELS;i++) setPixelColor(i, c);
 	FastLED.show(); // This sends the updated pixel color to the hardware.
 }
 
 
-void getrand() { // trying to make it //the goal is to get a random forecolor that is not white, then find the opposite of
+void getrand() { // trying to make it //the goal is to get a random Forecolor that is not white
 	switch (random(0, 3)) {
 		case 0:
 		green = (random(0, Brange + 1) * 2);
@@ -533,7 +524,7 @@ void getrand() { // trying to make it //the goal is to get a random forecolor th
 		case 1:
 		green = (random(0, Brange + 1) * 2);
 		blue = (random(0, Brange + 1) * 2);
-		red = 0; //32
+		red = 0;
 		if (green == 0 || blue == 0) {
 			red = 1;
 		};
@@ -542,7 +533,7 @@ void getrand() { // trying to make it //the goal is to get a random forecolor th
 		case 2:
 		red = (random(0, Brange + 1) * 2);
 		blue = (random(0, Brange + 1) * 2);
-		green = 0; //32
+		green = 0;
 		if (red == 0 || blue == 0) {
 			green = 1;
 		};

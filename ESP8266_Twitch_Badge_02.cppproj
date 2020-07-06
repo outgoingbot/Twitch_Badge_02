@@ -56,7 +56,6 @@
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -114,7 +113,6 @@
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -754,7 +752,6 @@ build.arch=ESP8266
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -812,7 +809,6 @@ build.arch=ESP8266
     <ListValues>
       <Value>__ESP8266_ESp8266__</Value>
       <Value>__ESP8266_ESP8266__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=108012</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=80000000L</Value>
@@ -1454,6 +1450,9 @@ build.arch=ESP8266
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Hardware.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Images.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="__vm\.ESP8266_Twitch_Badge_02.vsarduino.h">

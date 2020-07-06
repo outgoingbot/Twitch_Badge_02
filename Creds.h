@@ -1,5 +1,5 @@
 #define DEBUG 1 //skip credentials. use hard coded
-#include "Hardware.h"
+//#include "Hardware.h"
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
