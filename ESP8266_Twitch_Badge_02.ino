@@ -2,6 +2,8 @@
 //customizable keywords and parameters?
 //bitmap side loading?
 //low power mode options and power requirements (battery capacity) ?
+//button should control brightness. needed to be adjustable so it shows up on defferent cameras properly
+//webSocket.sendTXT(":esp8266led!esp8266led@esp8266led.tmi.twitch.tv PRIVMSG #esp8266led :text2sendhere\r\n"); //working send to chat
 
 #include "Hardware.h"
 #include "Creds.h"
@@ -11,12 +13,12 @@
 #define FONT_3X5 0
 #define FONT_8X8 1
 #define DEBUGPRINTSPEED 20
-#define PRINTSPEED 50
+#define PRINTSPEED 40
 #define MAXPRINTLENGTH 200 //put this in the print function as a const int
 #define MAXRGBCOLOR 64
 #define MAXFLASH 50
 
-//commmands from twitch
+//commands from twitch
 const String keyword_1 = "setled(";	//set a rgb led (setpixel)
 const String keyword_2 = "print(";	//scroll text on the matrix (printwithshiftleft)
 const String keyword_3 = "flash(";	//flash the rgb leds (colorwipe)
@@ -39,7 +41,7 @@ secret o;
 void setup() { 
   setupHardware();    
   o.startwifi();
-  
+
   printStringWithShiftL("  CONNECTED !!!   ", DEBUGPRINTSPEED,4,FONT_8X8); //see chartable for valid characters. all caps a few symbols, etc
   char ipCharArray[20];
   IPAddress ip = WiFi.localIP();
@@ -47,24 +49,27 @@ void setup() {
   printStringWithShiftL(ipCharArray, DEBUGPRINTSPEED,4,FONT_8X8); //Print he local IP on the LED matrix
 
   LedTest(2); //quick led hardware test
-  /*
-  drawBitmap(bitmap1);
-  lmd.display(); //must display after draw bitmap !!!!!!!!
-  delay(1000);
-  rotateScreen(4,-1); //number of rotations
-  */
+ 
+
+  
   webSocket.begin("irc-ws.chat.twitch.tv", 80, "/"); // server address, port, and URL path
   webSocket.onEvent(webSocketEvent); // event handler
   webSocket.setReconnectInterval(5000); // try ever 5000 again if connection has failed
+  
+   	drawBitmap(bitmap2,0);
+   	for(int i=0; i<25; i++){
+		recflectScreenXY(-1,1);
+		lmd.display(); //send lmd buffer to SPI for diplay
+	   	delay(200);
+   	}
+	   
+	   
 }
 
 
-void loop() 
-{
+void loop(){
   webSocket.loop();
 }
-
-
 
 
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t length){
@@ -100,7 +105,8 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length){
 }
 
 
-void parseMessage(String cmd_str){ //parses the string in differnt manner bases on the the keyword after the special character
+
+void parseMessage(String cmd_str){ //parses the string in different manner bases on the the keyword after the special character
 		
 	//setled(i,g,r,b)  e.g. $setled(4,255,255,255)
   if(cmd_str.indexOf(keyword_1)>=0 && cmd_str.indexOf(")")>0) { //check for a keyword and the closed parenthesis 
@@ -126,6 +132,7 @@ void parseMessage(String cmd_str){ //parses the string in differnt manner bases 
 	    if(cmd_end > 0 && cmd_end < MAXPRINTLENGTH){
 			String buffer_str = cmd_str.substring(cmd_start,cmd_end);
 			//Serial.print(buffer_str.c_str());
+			webSocket.sendTXT(":" + o.gettwitch_nick() + "!" + o.gettwitch_nick() + "@" + o.gettwitch_nick() + "tmi.twitch.tv " + "PRIVMSG " + o.gettwitch_channel() + " :" + "received " + buffer_str + "\r\n"); //TEST to send to chat	
 			printStringWithShiftL("    ", PRINTSPEED,4,FONT_8X8);
 			printStringWithShiftL(buffer_str.c_str(),PRINTSPEED,4,FONT_8X8);
 			printStringWithShiftL("    ", PRINTSPEED,4,FONT_8X8);
@@ -170,16 +177,15 @@ void parseMessage(String cmd_str){ //parses the string in differnt manner bases 
 			  	getrand();
 			  	ColorFill(Forecolor);
 			  	lmd.clear();
-			  	drawBitmap(bitmap1);
+			  	drawBitmap(bitmap1,1);
 			  	scaleScreen(0.05); //shrink to 0.05
 			  	getrand();
 			  	ColorFill(Forecolor);
 			  	lmd.clear();
-			  	drawBitmap(bitmap1);
+			  	drawBitmap(bitmap1,1);
 			  	scaleScreen(1.0); // grow to 1.0
 		  	}
 		  	lmd.clear();
-		  	drawBitmap(bitmap1);
 		  	lmd.display();
 		  	ColorFill(0);
 		  	}else{
@@ -213,10 +219,13 @@ void parseMessage(String cmd_str){ //parses the string in differnt manner bases 
 			}
 			  	ColorFill(Color(0, voteColor[0],voteColor[1]));
 			  	FastLED.show();
+				String vote_str = "RED:" + String(voteTally[0]) + " BLUE:" + String(voteTally[1]) + " TOTAL:" + String(voteTally[2]); //build the response string
+				webSocket.sendTXT(":" + o.gettwitch_nick() + "!" + o.gettwitch_nick() + "@" + o.gettwitch_nick() + "tmi.twitch.tv " + "PRIVMSG " + o.gettwitch_channel() + " :" + vote_str + "\r\n"); //Send the response String to the Chat
 		  	}else{
 		  	Serial.printf("%s ERROR !!!",keyword_4.c_str());
 	  	}
   	}
+	  
 	  
 	//vReset e.g: $vReset()
 	if(cmd_str.indexOf(keyword_5)>=0) { //check for a keyword and the closed parenthesis
@@ -302,17 +311,14 @@ void scaleScreen(float sclPercent){ //scale the all the pixels currently on the 
 }
 
 
-
-
-
 void rotateScreen(float angPercent, int dir){ //rotates all pixels currently on the screen theta rads counter clockwise
 	//dir: 1 for CCW, -1 for CW
 	storeScreen();
 	int angleIndex = 0;
 	for(float i=0; i<=2*angPercent; i+=.05){ //step though the angles
 		PollButtons();
-		for(int x=0; x<16; x++){  //perform the matrix multiplication
-			for(int y=0; y<16; y++){
+		for(int x=0; x<numCols; x++){  //perform the matrix multiplication
+			for(int y=0; y<numRows; y++){
 				int myXT = (int) (myOffset+(((x-myOffset)*cos(M_PI*i))-(dir)*((y-myOffset)*sin(M_PI*i)))); //rotation matrix
 				int myYT = (int) (myOffset+(((x-myOffset)*(dir)*sin(M_PI*i))+((y-myOffset)*cos(M_PI*i))));
 				SetLEDxy(myXT,myYT,buffTemp[x][y]);
@@ -323,6 +329,21 @@ void rotateScreen(float angPercent, int dir){ //rotates all pixels currently on 
 	}
 	if(ceilf(angPercent) == angPercent) printStored(); //if angle to rotate is integer value then fix rotation error by printing the tempbuff
 }
+
+void recflectScreenXY(int xR, int yR){ //(1,1) is not reflection
+	storeScreen();
+	lmd.clear();
+		//PollButtons();
+		for(int x=0; x<numCols; x++){  //perform the matrix multiplication
+			for(int y=0; y<numRows; y++){
+					int myXT = (int) (myOffset+ ((x-myOffset)*(xR))); //scaling matrix
+					int myYT = (int) (myOffset+((y-myOffset)*(yR)));
+				SetLEDxy(myXT,myYT,buffTemp[x][y]);
+			}
+		}
+}
+
+
 
 void storeScreen(){ //copy every mono led state to a buffer called bitmap
 	for(int x=0; x<16; x++){
@@ -360,7 +381,9 @@ bool GetLEDxy(int x, int y){ //just pass in cartesian (x,y) pairs
 
 
 
-void drawBitmap(const char* image){ //draws a bitmap from a hex array defined at top
+
+
+void drawBitmap(const char* image, byte inv){ //draws a bitmap from a hex array defined at top
 	byte Tempbuff = 0;
 	int mySide = 1;
 	int myYY = 0;
@@ -374,7 +397,11 @@ void drawBitmap(const char* image){ //draws a bitmap from a hex array defined at
 			mySide = 8;
 		}
 		for (int k = 0; k < 8; k++) {
-			if ((Tempbuff&b)) SetLEDxy(mySide+k,numRows-1-myYY,1);
+			if(inv){
+				if ((Tempbuff&b))SetLEDxy(mySide+k,numRows-1-myYY,1);
+				}else{
+				if (!(Tempbuff&b))SetLEDxy(mySide+k,numRows-1-myYY,1);
+			}
 			b = b >> 1;
 		}
 	}

@@ -6,15 +6,13 @@
 #include <WebSocketsClient.h>
 #include <ArduinoJson.h>
 
-
-
 StaticJsonDocument<200> doc; // Allocate the JSON document
 WebSocketsClient webSocket;// Declare websocket client class variable
 
 class secret 
 {
 
-
+private:
 // Initialize network parameters
 String ssid="";
 String password="";
@@ -25,60 +23,54 @@ String twitch_channel="#esp8266led";
 
 
 public:
-  secret() {}
-  secret(const String &SECRET_SSID, const String &SECRET_PASS, const String &TWITCH_OAUTH_TOKEN, const String &TWITCH_NICK, const String &TWITCH_CHANNEL)
-  {
-    ssid = SECRET_SSID;
-    password = SECRET_PASS;
-    twitch_oauth_token = TWITCH_OAUTH_TOKEN;
-    twitch_nick = TWITCH_NICK;
-    twitch_channel = TWITCH_CHANNEL;
-	
-  }
+  secret() {} //constructor
+//   secret(const String &SECRET_SSID, const String &SECRET_PASS, const String &TWITCH_OAUTH_TOKEN, const String &TWITCH_NICK, const String &TWITCH_CHANNEL)
+//   {
+// 	  ssid = SECRET_SSID;
+// 	  password = SECRET_PASS;
+// 	  twitch_oauth_token = TWITCH_OAUTH_TOKEN;
+// 	  twitch_nick = TWITCH_NICK;
+// 	  twitch_channel = TWITCH_CHANNEL; 
+//   }
 
-
-void setssid( const String &SECRET_SSID)
-  {
-    ssid = SECRET_SSID;
-  }  
-String getssid() const 
-  {
-    return ssid;
-  }
-
-void setpassword( const String &SECRET_PASS) 
-  {
-    password = SECRET_PASS;
-  } 
-String getpassword() const 
-  {
-    return password;
-  }
-
-void settwitch_oauth_token( const String &TWITCH_OAUTH_TOKEN ) 
-  {
-    twitch_oauth_token = TWITCH_OAUTH_TOKEN; 
-  }
-String gettwitch_oauth_token() const 
-  {
-    return twitch_oauth_token;
-  }
-
-void settwitch_nick( const String &TWITCH_NICK ) 
-  {
-    twitch_nick = TWITCH_NICK;
-  }
-String gettwitch_nick() const {
-    return twitch_nick;
+  void setssid( const String &SECRET_SSID){
+	  ssid = SECRET_SSID;
   }
   
-
-void settwitch_channel( const String &TWITCH_CHANNEL ) 
-  {
-    twitch_channel = TWITCH_CHANNEL;
+  String getssid() const{
+	  return ssid;
   }
-String gettwitch_channel() const {
-   return twitch_channel;
+
+  void setpassword( const String &SECRET_PASS){
+	  password = SECRET_PASS;
+  }
+  
+  String getpassword() const{
+	  return password;
+  }
+  
+  void settwitch_oauth_token( const String &TWITCH_OAUTH_TOKEN ){
+	  twitch_oauth_token = TWITCH_OAUTH_TOKEN;
+  }
+  
+  String gettwitch_oauth_token() const{
+	  return twitch_oauth_token;
+  }
+
+  void settwitch_nick( const String &TWITCH_NICK ){
+	  twitch_nick = TWITCH_NICK;
+  }
+  
+  String gettwitch_nick() const {
+	  return twitch_nick;
+  }
+  
+  void settwitch_channel( const String &TWITCH_CHANNEL ){
+	  twitch_channel = TWITCH_CHANNEL;
+  }
+  
+  String gettwitch_channel() const {
+	  return twitch_channel;
   }
 
 void startwifi() {
