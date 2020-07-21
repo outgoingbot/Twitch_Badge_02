@@ -120,16 +120,15 @@ void startwifi() {
 	settwitch_channel( Serial.readString() );
 	Serial.println();
 	
-	//write to EEPROM here
-	EEPROMdata.strSSID = ssid.c_str();
-	
-	EEPROMdata.flagFIRSTBOOT = 0; //clear the FirstBoot flag
-	EEPROM.put(addr,EEPROMdata); //write to the struct
-	EEPROM.commit();		  //flash self-write 512 byte block
+	//write to EEPROM here//
+	//EEPROMdata.strSSID = ssid.c_str();
+	//EEPROMdata.flagFIRSTBOOT = 0; //clear the FirstBoot flag
+	//EEPROM.put(addr,EEPROMdata); //write to the struct
+	//EEPROM.commit();		  //flash self-write 512 byte block
   }
   
-  //read EEPROM here
-  if(!DEBUG) EEPROM.get(addr,EEPROMdata);	//read from 512 block to struct
+  //read EEPROM here//
+  //if(!DEBUG) EEPROM.get(addr,EEPROMdata);	//read from 512 block to struct
   
   // Connect to WiFi
   WiFi.begin(ssid,password);
