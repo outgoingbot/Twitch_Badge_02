@@ -30,7 +30,7 @@ CRGB leds[NUMPIXELS];
 #define numRows 16
 #define FONT_3X5 0
 #define FONT_8X8 1
-
+  
 bool buffTemp[numCols][numRows]; //screen buffer-ish //screen buffer-ish (bool uses same amount of ram as byte)! this is inefficient this should be  byte[32]
 //maps library to hardware// depends on board
 //byte X1[16] = {7,6,5,4,3,2,1,0,7,6,5,4,3,2,1,0};
@@ -47,6 +47,7 @@ LEDMatrixDriver lmd(LEDMATRIX_SEGMENTS, LEDMATRIX_CS_PIN);
 
 
 void setupHardware(){
+
 	pinMode(LED_BUILTIN, OUTPUT);
 	pinMode(BTN1_PIN,INPUT);
 	pinMode(BTN2_PIN,INPUT);

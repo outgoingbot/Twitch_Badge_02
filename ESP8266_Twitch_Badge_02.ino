@@ -5,9 +5,18 @@
 //button should control brightness. needed to be adjustable so it shows up on defferent cameras properly
 //webSocket.sendTXT(":esp8266led!esp8266led@esp8266led.tmi.twitch.tv PRIVMSG #esp8266led :text2sendhere\r\n"); //working send to chat
 
+//add eeprom support to store and read creds in in:
+// https://arduino.stackexchange.com/questions/25945/how-to-read-and-write-eeprom-in-esp8266
+//maybe use some way to encode the creds. i.e character offsets or a scatted decode table
+
+//open PC APP, power off device, connect USB, power on device.
+//"press Enter (or gui button) to change credentials"
 #include "Hardware.h"
 #include "Creds.h"
 #include "Images.h"
+
+
+
 
 
 #define FONT_3X5 0
@@ -37,9 +46,9 @@ unsigned int voteTally[3]={0,0,0}; //{candidate_1, candidate_2, Total votes}
 
 secret o; 
 
-
 void setup() { 
   setupHardware();    
+
   o.startwifi();
 
   printStringWithShiftL("  CONNECTED !!!   ", DEBUGPRINTSPEED,4,FONT_8X8); //see chartable for valid characters. all caps a few symbols, etc
@@ -59,7 +68,7 @@ void setup() {
    	drawBitmap(bitmap2,0);
    	for(int i=0; i<25; i++){
 		recflectScreenXY(-1,1);
-		lmd.display(); //send lmd buffer to SPI for diplay
+		lmd.display();
 	   	delay(200);
    	}
 	   

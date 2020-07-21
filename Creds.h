@@ -1,4 +1,4 @@
-#define DEBUG 1 //skip credentials. use hard coded
+#define DEBUG 1 //skip EEPROM Read credentials. use hard coded
 //#include "Hardware.h"
 
 #include <ESP8266WiFi.h>
@@ -8,6 +8,8 @@
 
 StaticJsonDocument<200> doc; // Allocate the JSON document
 WebSocketsClient webSocket;// Declare websocket client class variable
+
+#include <EEPROM.h>
 
 class secret 
 {
@@ -21,17 +23,21 @@ String twitch_oauth_token= "oauth:";
 String twitch_nick="esp8266led";
 String twitch_channel="#esp8266led";
 
+//EEPROM
+int addr = 0;
+struct {
+	char strSSID[50] = "";
+	char strPASSWORD[50] = "";
+	char strCHANNEL[50] = "";
+	char strNICK[50] = "";
+	char strTOKEN[100] = "";
+	char flagFIRSTBOOT = 1;
+} EEPROMdata;
+
 
 public:
   secret() {} //constructor
-//   secret(const String &SECRET_SSID, const String &SECRET_PASS, const String &TWITCH_OAUTH_TOKEN, const String &TWITCH_NICK, const String &TWITCH_CHANNEL)
-//   {
-// 	  ssid = SECRET_SSID;
-// 	  password = SECRET_PASS;
-// 	  twitch_oauth_token = TWITCH_OAUTH_TOKEN;
-// 	  twitch_nick = TWITCH_NICK;
-// 	  twitch_channel = TWITCH_CHANNEL; 
-//   }
+
 
   void setssid( const String &SECRET_SSID){
 	  ssid = SECRET_SSID;
@@ -74,11 +80,22 @@ public:
   }
 
 void startwifi() {
-  Serial.begin(115200);
-  digitalWrite(LED_BUILTIN,1);
-  Serial.println("Shalom ");
-  Serial.println();
-  if(!DEBUG){
+	int credsTimout = 20;
+	int credTime = 0;
+	EEPROM.begin(512);
+	Serial.begin(115200);
+	digitalWrite(LED_BUILTIN,1);
+	Serial.println("Chat Badge XxMLG-420xX ");
+	Serial.println();
+	Serial.println("Press Enter to change Credentials");
+	while (!Serial.available()){
+		static int i = credsTimout;
+		Serial.printf("%d..",i--);
+		delay(500);
+		if(!i) break;
+	}
+	
+  if(Serial.read()=='\n' || EEPROMdata.flagFIRSTBOOT){
     Serial.println("Please Enter your SSID ");  // requesting ssid from user
     while (Serial.available() == 0) { }       // looping untill serial input in entered
     ssid = Serial.readString();
@@ -102,7 +119,17 @@ void startwifi() {
 	while (Serial.available() == 0) { }       // looping untill serial input in entered
 	settwitch_channel( Serial.readString() );
 	Serial.println();
+	
+	//write to EEPROM here
+	EEPROMdata.strSSID = ssid.c_str();
+	
+	EEPROMdata.flagFIRSTBOOT = 0; //clear the FirstBoot flag
+	EEPROM.put(addr,EEPROMdata); //write to the struct
+	EEPROM.commit();		  //flash self-write 512 byte block
   }
+  
+  //read EEPROM here
+  if(!DEBUG) EEPROM.get(addr,EEPROMdata);	//read from 512 block to struct
   
   // Connect to WiFi
   WiFi.begin(ssid,password);
